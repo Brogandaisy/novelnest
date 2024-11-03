@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Book
 
 # Create your views here.
 
@@ -26,3 +29,23 @@ class BookCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.added_by = self.request.user  # Connects the user to the book
         return super().form_valid(form)
+
+# Updating a book. Allowing user to edit book details - User must be logged in
+class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Book
+    template_name = 'books/book_form.html'
+    fields = ['title', 'author', 'status']
+
+    def test_func(self):
+        book = self.get_object()
+        return self.request.user == book.added_by or self.request.user.is_superuser
+
+# Allowing users to delete the book that they have uploaded - user must be logg in
+class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Book
+    template_name = 'books/book_confirm_delete.html'
+    success_url = reverse_lazy('book_list')
+
+    def test_func(self):
+        book = self.get_object()
+        return self.request.user == book.added_by or self.request.user.is_superuser
