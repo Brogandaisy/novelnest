@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ object.title }} - Details</title>
+</head>
+<body>
+    <h1>{{ object.title }}</h1>
+    <p><strong>Author:</strong> {{ object.author }}</p>
+    <p><strong>Status:</strong> {{ object.get_status_display }}</p>
+    <a href="{% url 'book_edit' object.pk %}">Edit</a>
+    <a href="{% url 'book_delete' object.pk %}">Delete</a>
+    <a href="{% url 'book_list' %}">Back to List</a>
+</body>
+</html>
