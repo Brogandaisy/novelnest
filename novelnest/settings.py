@@ -25,7 +25,14 @@ SECRET_KEY = 'django-insecure-7g2qdw!5n&6vn#a!by)z9eb#d#k*f7#sf3=e7&c*d&b4bjaq^u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',  # Localhost
+    '8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net'  # Gitpod URL
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net'
+]
 
 
 # Application definition
