@@ -92,6 +92,10 @@ DATABASES = {
     }
 }
 
+LOGIN_REDIRECT_URL = '/books/'  # Redirect to the book list after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect to the homepage after logout (optional)
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
