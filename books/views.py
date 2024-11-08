@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -34,6 +36,7 @@ class BookCreateView(LoginRequiredMixin, CreateView):
     model = Book
     template_name = 'books/book_form.html'
     fields = ['title', 'author', 'status']
+    success_url = reverse_lazy('book_list')  # Redirects to the book list view/page after adding a book
 
     def form_valid(self, form):
         form.instance.added_by = self.request.user  # Connects the user to the book

@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Book Admin{% endblock %}
+
+{% block content %}
 <h1>Admin-Only Book List</h1>
 <ul>
     {% for book in object_list %}
@@ -7,3 +12,4 @@
     {% endfor %}
 </ul>
 <a href="{% url 'book_list' %}">Back to User Book List</a>
+{% endblock %}
