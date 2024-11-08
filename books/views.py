@@ -13,7 +13,10 @@ class BookListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         if self.request.user.is_superuser:
             return Book.objects.all()
-        return Book.objects.filter(added_by=self.request.user)
+            # Allowing Admins can see all books
+        else:
+            return Book.objects.filter(added_by=self.request.user)
+            # Non-Admins can only see their books
 
 # Detailed Book View - This shows further details of the book
 class BookDetailView(LoginRequiredMixin, DetailView):
