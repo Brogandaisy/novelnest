@@ -1,0 +1,9 @@
+<h1>Admin-Only Book List</h1>
+<ul>
+    {% for book in object_list %}
+        <li>{{ book.title }} by {{ book.author }} - Status: {{ book.get_status_display }}</li>
+    {% empty %}
+        <li>No books available.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'book_list' %}">Back to User Book List</a>

@@ -1,7 +1,10 @@
 from django.urls import path
 from . import views
+from .views import AdminOnlyView
+
 
 urlpatterns = [
+    path('admin-only/', AdminOnlyView.as_view(), name='admin_only'), # Admin only 
     path('', views.BookListView.as_view(), name='book_list'),  # List all books
     path('signup/', views.signup, name='signup'),  # Signup page
     path('add/', views.BookCreateView.as_view(), name='book_add'),  # Add a new book

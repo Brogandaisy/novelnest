@@ -5,6 +5,8 @@ from .models import Book
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 
 
 # Create your views here.
@@ -67,3 +69,9 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+    # Admin-Only View
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class AdminOnlyView(ListView):
+    model = Book
+    template_name = 'books/admin_books.html'  # Admin-only template
