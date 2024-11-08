@@ -37,6 +37,7 @@ class BookCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.added_by = self.request.user  # Connects the user to the book
+        messages.success(self.request, "Book added successfully!") # Displays book added success message
         return super().form_valid(form)
 
 # Updating a book. Allowing user to edit book details - User must be logged in
@@ -44,6 +45,10 @@ class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Book
     template_name = 'books/book_form.html'
     fields = ['title', 'author', 'status']
+
+    def form_valid(self, form):
+        messages.success(self.request, "Book updated successfully!") # Displays upload success message
+        return super().form_valid(form)
 
     def test_func(self):
         book = self.get_object()
@@ -54,6 +59,10 @@ class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Book
     template_name = 'books/book_confirm_delete.html'
     success_url = reverse_lazy('book_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "Book deleted successfully!") # Displays delete success message
+        return super().delete(request, *args, **kwargs)
 
     def test_func(self):
         book = self.get_object()
