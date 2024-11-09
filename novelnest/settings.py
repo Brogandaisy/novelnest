@@ -60,7 +60,6 @@ MIDDLEWARE = [
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-
 ROOT_URLCONF = "novelnest.urls"
 
 TEMPLATES = [
