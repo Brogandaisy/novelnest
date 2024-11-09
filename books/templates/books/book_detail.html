@@ -1,13 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}Book Details{% endblock %}
+{% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ object.title }}</h1>
-    <p><strong>Author:</strong> {{ object.author }}</p>
-    <p><strong>Status:</strong> {{ object.get_status_display }}</p>
-    <a href="{% url 'book_edit' object.pk %}">Edit</a>
-    <a href="{% url 'book_delete' object.pk %}">Delete</a>
-    <a href="{% url 'book_list' %}">Back to List</a>
-    {% endblock %}
+<h1>{{ object.title }}</h1>
+<p>Author: {{ object.author }}</p>
+<p>Status: {{ object.status }}</p>
+<a href="{% url 'book_edit' book.pk %}">Edit</a>
+<a href="{% url 'book_delete' book.pk %}">Delete</a>
 
+<h2>Reviews</h2>
+{% if reviews %}
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user }}:</strong> {{ review.content }} <br>
+                <small>Posted on {{ review.created_at }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reviews yet. Be the first to review this book!</p>
+{% endif %}
+
+{% if review_form %}
+<h2>Leave a Review</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+{% endif %}
+
+
+<a href="{% url 'book_list' %}">Back to Book List</a>
+{% endblock %}
