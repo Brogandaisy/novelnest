@@ -5,6 +5,7 @@
 {% block content %}
 <h1>{{ object.title }}</h1>
 <p>Author: {{ object.author }}</p>
+<p>Genre: {{ object.get_genre_display }}</p>
 <p>Status: {{ object.status }}</p>
 <a href="{% url 'book_edit' book.pk %}">Edit</a>
 <a href="{% url 'book_delete' book.pk %}">Delete</a>

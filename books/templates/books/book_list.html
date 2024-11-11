@@ -7,7 +7,7 @@
     <ul>
         {% for book in object_list %}
             <li>
-                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> by {{ book.author }} - Status: {{ book.get_status_display }}
+                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> by {{ book.author }} Genre:</strong> {{ book.get_genre_display }} - Status: {{ book.get_status_display }}
                 <a href="{% url 'book_edit' book.pk %}">Edit</a>
                 <a href="{% url 'book_delete' book.pk %}">Delete</a>
             </li>
