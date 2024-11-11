@@ -14,6 +14,20 @@ class Book(models.Model):
         ("Completed", "Completed"),
     ]
     status = models.CharField(max_length=10, choices=status_choices, default="to_read")
+    
+    genre_choices = [
+        ("fiction", "Fiction"),
+        ("nonfiction", "Non-Fiction"),
+        ("fantasy", "Fantasy"),
+        ("mystery", "Mystery"),
+        ("science_fiction", "Science Fiction"),
+        ("biography", "Biography"),
+        ("history", "History"),
+        ("self_help", "Self Help"),
+        ("romance", "Romance"),
+    ]
+    genre = models.CharField(max_length=20, choices=genre_choices, default="fiction")
+    
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

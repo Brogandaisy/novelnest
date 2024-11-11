@@ -73,7 +73,7 @@ class BookDetailView(LoginRequiredMixin, DetailView):
 class BookCreateView(LoginRequiredMixin, CreateView):
     model = Book
     template_name = "books/book_form.html"
-    fields = ["title", "author", "status"]
+    fields = ["title", "author", "genre", "status"]
     success_url = reverse_lazy(
         "book_list"
     )  # Redirects to the book list view/page after adding a book
@@ -90,7 +90,7 @@ class BookCreateView(LoginRequiredMixin, CreateView):
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Book
     template_name = "books/book_form.html"
-    fields = ["title", "author", "status"]
+    fields = ["title", "author", "genre", "status"]
 
     def form_valid(self, form):
         messages.success(
