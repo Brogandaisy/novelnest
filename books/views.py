@@ -33,6 +33,22 @@ class BookListView(LoginRequiredMixin, ListView):
             return Book.objects.filter(added_by=self.request.user)
             # Non-Admins can only see their books
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        books = self.get_queryset()
+
+        # Categorise books
+        context["wish_list_books"] = books.filter(status="Wishlist")
+        context["reading_books"] = books.filter(status="Reading")
+        context["completed_books"] = books.filter(status="Completed")
+
+        # Add book totals for each category
+        context["wish_list_count"] = context["wish_list_books"].count()
+        context["reading_count"] = context["reading_books"].count()
+        context["completed_count"] = context["completed_books"].count()
+
+        return context
+
 
 # Detailed Book View - This shows further details of the book
 class BookDetailView(LoginRequiredMixin, DetailView):

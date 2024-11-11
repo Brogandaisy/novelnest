@@ -3,17 +3,48 @@
 {% block title %}Book List{% endblock %}
 
 {% block content %}
-    <h1>Book List</h1>
-    <ul>
-        {% for book in object_list %}
-            <li>
-                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> by {{ book.author }} Genre:</strong> {{ book.get_genre_display }} - Status: {{ book.get_status_display }}
-                <a href="{% url 'book_edit' book.pk %}">Edit</a>
-                <a href="{% url 'book_delete' book.pk %}">Delete</a>
-            </li>
-        {% empty %}
-            <li>No books available.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'book_add' %}">Add a New Book</a>
+    <h1>Your Book List</h1>
+    <h2>Wish List ({{ wish_list_count }})</h2>
+    {% if wish_list_books %}
+        <ul>
+            {% for book in wish_list_books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books in your wish list.</p>
+    {% endif %}
+    
+    <h2>Currently Reading ({{ reading_count }})</h2>
+    {% if reading_books %}
+        <ul>
+            {% for book in reading_books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not currently reading any books.</p>
+    {% endif %}
+    
+    <h2>Completed ({{ completed_count }})</h2>
+    {% if completed_books %}
+        <ul>
+            {% for book in completed_books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No completed books yet.</p>
+    {% endif %}
+    
+    <a href="{% url 'book_add' %}">Add a new book</a>
     {% endblock %}
