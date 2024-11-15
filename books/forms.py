@@ -11,3 +11,11 @@ class ReviewForm(forms.ModelForm):
                 attrs={"rows": 4, "placeholder": "Write your review here..."}
             ),
         }
+
+class SearchForm(forms.Form):
+    query = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": "Search for books...", "class": "form-control"}),
+    )
+
