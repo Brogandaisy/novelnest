@@ -4,6 +4,18 @@
 
 {% block content %}
     <h1>Your Book List</h1>
+
+    <!-- Search Bar -->
+    <form method="get" action="{% url 'book_search' %}">
+        <input
+            type="text"
+            name="q"
+            placeholder="Search books..."
+            value="{{ request.GET.q|default:'' }}"
+        />
+        <button type="submit">Search</button>
+    </form>
+
     <h2>Wish List ({{ wish_list_count }})</h2>
     {% if wish_list_books %}
         <ul>

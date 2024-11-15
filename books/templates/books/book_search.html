@@ -3,23 +3,28 @@
 {% block title %}Search Results{% endblock %}
 
 {% block content %}
-<h1>Search for Books</h1>
+<h1>Search Results</h1>
 
 <form method="get" action="{% url 'book_search' %}">
-    {{ search_form.as_p }}
-    <button type="submit" class="btn btn-primary">Search</button>
+    <input type="text" name="q" placeholder="Search books..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
 </form>
 
-<h2>Results</h2>
-<ul>
-    {% for book in search_results %}
-        <li>
-            <strong>{{ book.title }}</strong> by {{ book.author }}
-            <br>
-            <a href="{% url 'book_public_detail' book.pk %}">View Details</a>
-        </li>
-    {% empty %}
-        <p>No books found matching your search.</p>
-    {% endfor %}
-</ul>
+{% if books %}
+    <h2>Results</h2>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                by {{ book.author }}
+                <br>
+                <small>Status: {{ book.status }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found for your query.</p>
+{% endif %}
+
+<a href="{% url 'book_list' %}">Back to Book List</a>
 {% endblock %}
