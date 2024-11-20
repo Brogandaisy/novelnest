@@ -17,12 +17,19 @@ from django.contrib import messages
 from .forms import ReviewForm
 from .forms import SearchForm, ReviewForm
 from django.db.models import Q
+from django.db.models import Count
 
 
 # Create your views here.
 
 def homepage(request):
-    return render(request, 'books/homepage.html')
+    recent_books = Book.objects.order_by('-id')[:5]  # Get the 5 most recent books
+    most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:5]  # Get the 5 most reviewed books
+    return render(request, 'books/homepage.html', {
+        'recent_books': recent_books,
+        'most_reviewed_books': most_reviewed_books,
+    })
+
 
 
 # Book List - This displays the list of books - User must be logged in
