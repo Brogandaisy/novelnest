@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Search Results{% endblock %}
+{% block banner_image %}{% static 'assets/images/bannernovelnest.png' %}{% endblock %}
+{% block banner_title %}Search For Books{% endblock %}
+{% block banner_subtitle %}Search for books uploaded by other users and read the reviews{% endblock %}
 
 {% block content %}
 <h1>Search Results</h1>

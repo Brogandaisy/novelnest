@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Book Form{% endblock %}
+{% block banner_image %}{% static 'assets/images/bannernovelnest.png' %}{% endblock %}
+{% block banner_title %}Book Information{% endblock %}
+{% block banner_subtitle %}Find out more about the book and leave a review{% endblock %}
 
 {% block content %}
     <h1>{% if object %}Edit Book{% else %}Add Book{% endif %}</h1>

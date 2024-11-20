@@ -37,6 +37,13 @@
             </ul>
             <br>
             <h2 class="nav justify-content-center">Sharing Your Love Of Books</h2>
+    
+            <header class="banner" style="background-image: url('{% block banner_image %}{% static '/assets/images/bannernovelnest.png' %}{% endblock %}');">
+                <div class="banner-text">
+                    <h1>{% block banner_title %}Welcome to NovelNest{% endblock %}</h1>
+                    <p>{% block banner_subtitle %}Your personal book tracker and reviewer{% endblock %}</p>
+                </div>
+            </header>
     </header>
     
     <main>

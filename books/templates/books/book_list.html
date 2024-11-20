@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Book List{% endblock %}
+{% block banner_image %}{% static 'assets/images/bannernovelnest.png' %}{% endblock %}
+{% block banner_title %}Your Book Collection{% endblock %}
+{% block banner_subtitle %}View and manage your reading list{% endblock %}
 
 {% block content %}
     <h1>Your Book List</h1>
