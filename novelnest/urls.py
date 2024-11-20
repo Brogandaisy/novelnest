@@ -18,10 +18,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from books.views import signup
+from books.views import homepage
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/", signup, name="signup"),
     path("books/", include("books.urls")),
+    path('', homepage, name='homepage'),
 ]

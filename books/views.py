@@ -21,6 +21,9 @@ from django.db.models import Q
 
 # Create your views here.
 
+def homepage(request):
+    return render(request, 'books/homepage.html')
+
 
 # Book List - This displays the list of books - User must be logged in
 class BookListView(LoginRequiredMixin, ListView):
