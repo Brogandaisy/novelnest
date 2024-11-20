@@ -15,10 +15,11 @@
         />
         <button type="submit">Search</button>
     </form>
-
+<div class="bookListHeading row text-center mt-4">
+    <div class="col-md-4">
     <h2>Wish List ({{ wish_list_count }})</h2>
     {% if wish_list_books %}
-        <ul>
+        <ul class="bookList">
             {% for book in wish_list_books %}
                 <li>
                     <strong>{{ book.title }}</strong> by {{ book.author }} <br>
@@ -29,10 +30,12 @@
     {% else %}
         <p>No books in your wish list.</p>
     {% endif %}
+    </div>
     
+    <div class="bookListHeading col-md-4">
     <h2>Currently Reading ({{ reading_count }})</h2>
     {% if reading_books %}
-        <ul>
+        <ul class="bookList">
             {% for book in reading_books %}
                 <li>
                     <strong>{{ book.title }}</strong> by {{ book.author }} <br>
@@ -43,10 +46,12 @@
     {% else %}
         <p>You are not currently reading any books.</p>
     {% endif %}
+    </div>
     
+    <div class="bookListHeading col-md-4">
     <h2>Completed ({{ completed_count }})</h2>
     {% if completed_books %}
-        <ul>
+        <ul class="bookList">
             {% for book in completed_books %}
                 <li>
                     <strong>{{ book.title }}</strong> by {{ book.author }} <br>
@@ -57,6 +62,8 @@
     {% else %}
         <p>No completed books yet.</p>
     {% endif %}
+    </div>
+</div>
     
     <a href="{% url 'book_add' %}">Add a new book</a>
     {% endblock %}

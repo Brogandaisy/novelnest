@@ -3,13 +3,18 @@
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
+<div class="bookDetailContainer">
+    <div class="row">
+        <div class="col-sm-8">
 <h1>{{ object.title }}</h1>
 <p>Author: {{ object.author }}</p>
 <p>Genre: {{ object.get_genre_display }}</p>
 <p>Status: {{ object.status }}</p>
 <a href="{% url 'book_edit' book.pk %}">Edit</a>
 <a href="{% url 'book_delete' book.pk %}">Delete</a>
+    </div>
 
+    <div class="col-sm-4">
 <h2>Reviews</h2>
 {% if reviews %}
     <ul>
@@ -32,6 +37,9 @@
     <button type="submit" class="btn btn-primary">Submit Review</button>
 </form>
 {% endif %}
+    </div>
+        </div>
+</div>
 
 
 <a href="{% url 'book_list' %}">Back to Book List</a>

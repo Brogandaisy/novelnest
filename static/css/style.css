@@ -64,6 +64,17 @@ h1 {
     color: #555;
 }
 
+.bookList {
+    list-style: none;
+}
+
+.bookListHeading h2 {
+    font-weight: 900;
+}
+
+.bookDetailContainer {
+    padding: 100px;
+}
 
 footer {
     background-color: #fab400;
