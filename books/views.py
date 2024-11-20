@@ -23,8 +23,8 @@ from django.db.models import Count
 # Create your views here.
 
 def homepage(request):
-    recent_books = Book.objects.order_by('-id')[:5]  # Get the 5 most recent books
-    most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:5]  # Get the 5 most reviewed books
+    recent_books = Book.objects.order_by('-id')[:6]  # Get the 6 most recent books
+    most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
     return render(request, 'books/homepage.html', {
         'recent_books': recent_books,
         'most_reviewed_books': most_reviewed_books,

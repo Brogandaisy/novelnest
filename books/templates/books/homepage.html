@@ -1,32 +1,57 @@
-{% extends "base.html" %}
-
-{% block title %}Homepage{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to NovelNest!</h1>
-<p>Novel nest text here.</p>
+<div class="container mt-5">
+    <h1 class="text-center">Welcome to NovelNest!</h1>
+    <p class="text-center">Track, review, and explore books.</p>
 
-<h2>Navigation</h2>
-<ul>
-    <li><a href="{% url 'book_list' %}">View Your Books</a></li>
-    <li><a href="{% url 'book_add' %}">Add a New Book</a></li>
-</ul>
+    <!-- Navigation Buttons -->
+    <div class="row text-center mt-4">
+        <div class="col-md-4">
+            <a href="{% url 'book_list' %}" class="btn btn-primary btn-block">View Your Books</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'book_search' %}" class="btn btn-secondary btn-block">Search Books</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'book_add' %}" class="btn btn-success btn-block">Add a New Book</a>
+        </div>
+    </div>
 
-<h2>Recently Added Books</h2>
-<ul>
-    {% for book in recent_books %}
-        <li>{{ book.title }} by {{ book.author }}</li>
-    {% empty %}
-        <li>No books added yet.</li>
-    {% endfor %}
-</ul>
+    <!-- Recently Added Books -->
+    <h2 class="mt-6">Recently Added Books</h2>
+    <div class="row">
+        {% for book in recent_books %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Book</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No recent books available.</p>
+        {% endfor %}
+    </div>
 
-<h2>Most Reviewed Books</h2>
-<ul>
-    {% for book in most_reviewed_books %}
-        <li>{{ book.title }} ({{ book.reviews.count }} reviews)</li>
-    {% empty %}
-        <li>No reviews yet.</li>
-    {% endfor %}
-</ul>
+    <!-- Top Reviewed Books -->
+    <h2 class="mt-3">Top Reviewed Books</h2>
+    <div class="row">
+        {% for book in most_reviewed_books %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Book</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No top-reviewed books available.</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
