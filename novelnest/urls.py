@@ -19,10 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from books.views import signup
 from books.views import homepage
+from django.contrib.auth.views import LogoutView
+
+
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/logout/", LogoutView.as_view(next_page="/"), name="logout"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/", signup, name="signup"),
     path("books/", include("books.urls")),

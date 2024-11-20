@@ -96,7 +96,7 @@ DATABASES = {
 }
 
 LOGIN_REDIRECT_URL = "/books/"  # Redirect to the book list after login
-LOGOUT_REDIRECT_URL = "/"  # Redirect to the homepage after logout (optional)
+LOGOUT_REDIRECT_URL = "/"  # Redirect to the homepage after logout
 
 
 # Password validation
