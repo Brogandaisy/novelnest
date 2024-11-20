@@ -167,21 +167,28 @@ class AdminOnlyView(ListView):
     model = Book
     template_name = "books/admin_books.html"  # Admin-only template
 
-
 class BookSearchView(LoginRequiredMixin, ListView):
     model = Book
     template_name = "books/book_search.html"
     context_object_name = "search_results"
 
     def get_queryset(self):
-        query = self.request.GET.get("query", "")
-        return Book.objects.filter(
-            Q(title__icontains=query) | Q(author__icontains=query)
-        )
+        query = self.request.GET.get("q", "")
+        if query:  # Check if query exists
+            return Book.objects.filter(
+                Q(title__icontains=query) | Q(author__icontains=query)
+            )
+        return Book.objects.none()  # Return empty QuerySet if no query
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        query = self.request.GET.get("q", "")
         context["search_form"] = SearchForm(self.request.GET or None)
+        context["query"] = query  # Pass the query back to the template
+        context["recent_books"] = Book.objects.order_by('-id')[:3]
+        context["most_reviewed_books"] = Book.objects.annotate(
+            review_count=Count("reviews")
+        ).order_by("-review_count")[:3]
         return context
 
 class BookPublicDetailView(LoginRequiredMixin, DetailView):

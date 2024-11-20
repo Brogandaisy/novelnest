@@ -6,18 +6,7 @@
 {% block banner_subtitle %}View and manage your reading list{% endblock %}
 
 {% block content %}
-    <h1>Your Book List</h1>
 
-    <!-- Search Bar -->
-    <form method="get" action="{% url 'book_search' %}">
-        <input
-            type="text"
-            name="q"
-            placeholder="Search books..."
-            value="{{ request.GET.q|default:'' }}"
-        />
-        <button type="submit">Search</button>
-    </form>
 <div class="bookListHeading row text-center mt-4">
     <div class="col-md-4">
     <h2>Wish List ({{ wish_list_count }})</h2>
@@ -68,5 +57,20 @@
     </div>
 </div>
     
-    <a href="{% url 'book_add' %}">Add a new book</a>
-    {% endblock %}
+<a href="{% url 'book_add' %}">Add a new book</a>
+
+<!-- Search Bar -->
+<div class="searchBar text-center">
+    <h2>Search Our Books...</h2>
+    <form method="get" action="{% url 'book_search' %}">
+        <input
+                type="text"
+                name="q"
+                placeholder="Search books..."
+                value="{{ request.GET.q|default:'' }}"
+            />
+            <button type="submit">Search</button>
+     </form>
+</div>
+
+{% endblock %}

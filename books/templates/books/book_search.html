@@ -6,28 +6,72 @@
 {% block banner_subtitle %}Search for books uploaded by other users and read the reviews{% endblock %}
 
 {% block content %}
-<h1>Search Results</h1>
+<div class="bookSearch text-center">
+<h1>Search Our Books</h1>
 
 <form method="get" action="{% url 'book_search' %}">
-    <input type="text" name="q" placeholder="Search books..." value="{{ request.GET.q }}">
-    <button type="submit">Search</button>
+    <input type="text" name="q" placeholder="Search books..." value="{{ query|default:'' }}">
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
-
-{% if books %}
-    <h2>Results</h2>
+<br>
+<br>
+<div class= searchResults>
+{% if search_results %}
     <ul>
-        {% for book in books %}
+        {% for book in search_results %}
             <li>
-                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
-                by {{ book.author }}
-                <br>
-                <small>Status: {{ book.status }}</small>
+                <strong>{{ book.title }}</strong> by {{ book.author }}
+                <a href="{% url 'book_detail' book.pk %}">View Book</a>
             </li>
         {% endfor %}
     </ul>
 {% else %}
-    <p>No results found for your query.</p>
+    {% if query %}
+        <p>No books found matching your search criteria.</p>
+    {% endif %}
 {% endif %}
+</div>
 
 <a href="{% url 'book_list' %}">Back to Book List</a>
+</div>
+
+<!-- Recently Added Books -->
+<div class="container mt-5">
+<h2 class="mt-6">Recently Added Books</h2>
+<div class="row">
+    {% for book in recent_books %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Book</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No recent books available.</p>
+    {% endfor %}
+</div>
+
+<!-- Top Reviewed Books -->
+<h2 class="mt-3">Top Reviewed Books</h2>
+<div class="row">
+    {% for book in most_reviewed_books %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Book</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No top-reviewed books available.</p>
+    {% endfor %}
+</div>
+</div>
+</div>
+
 {% endblock %}

@@ -112,6 +112,10 @@ h1 {
     font-weight: 900;
 }
 
+.searchBar {
+    padding: 20px;
+}
+
 /* Book Detail Page Styling */
 
 
@@ -121,16 +125,26 @@ h1 {
 
 /* Book Search Page Styling */
 
+.bookSearch {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.searchResults ul {
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+}
+
 /* Login Page Styling */
 
-
+/* Footer Styling */
 
 footer {
     background-color: #fab400;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
+    padding: 5px 0;
     bottom: 0;
     width: 100%;
 }
