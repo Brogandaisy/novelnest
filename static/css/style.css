@@ -4,6 +4,7 @@ body {
     font-family: Playfair Display, serif;
     margin: 0;
     padding: 0;
+    background-color: #d9d9d9;
 }
 
 header {
@@ -56,6 +57,41 @@ h1 {
 .btn-block {
     width: 100%;
     margin: 10px 0;
+}
+
+.btnView {
+    background-color: #fab400;
+    color: #333;
+    height: 120px;
+    padding: 40px;
+    font-size: x-large;
+}
+
+.btnSearch {
+    background-color: #fff;
+    border-color: #fab400;
+    border-width: 1px;
+    color: #333;
+    height: 120px;
+    padding: 40px;
+    font-size: x-large;
+}
+
+.btnAdd {
+    background-color: #fab400;
+    color: #333;
+    height: 120px;
+    padding: 40px;
+    font-size: x-large;
+}
+
+.btnMain {
+    background-color: #fab400;  
+}
+
+.btnSecond {
+    background-color: #333; 
+    color: #fff;
 }
 
 .container {
