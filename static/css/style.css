@@ -119,7 +119,7 @@ h1 {
 .banner-text {
     text-align: center;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Optional background for better readability */
+    background-color: rgba(0, 0, 0, 0.2); /* Optional background for better readability */
     border-radius: 0px;
 }
 
@@ -136,6 +136,12 @@ h1 {
 
 /* HomePage Styling */
 
+.imgCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
 
 
 /* Book List Page Styling */
