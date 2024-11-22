@@ -171,18 +171,32 @@ h1 {
 
 /* Book List Page Styling */
 
-.bookList {
-    list-style: none;
+.pageBox {
+    border-style: solid;
+    border-color: #fab400;
+    border-radius: 10px;
+    background-color: white;
+    border-spacing: 1px;
+    display: inline;
+    text-align: center;
 }
 
 .bookListHeading h2 {
     font-weight: 900;
 }
 
+.bookList {
+    list-style: none;
+}
+
 .searchBar {
     padding: 20px;
 }
 
+.pageWelcome {
+    padding: 20px;
+    text-align: center;
+}
 /* Book Detail Page Styling */
 
 

@@ -7,57 +7,109 @@
 
 {% block content %}
 
-<div class="bookListHeading row text-center mt-4">
-    <div class="col-md-4">
-    <h2>Wish List ({{ wish_list_count }})</h2>
-    {% if wish_list_books %}
-        <ul class="bookList">
-            {% for book in wish_list_books %}
-                <li>
-                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No books in your wish list.</p>
-    {% endif %}
+<div class= pageWelcome>
+    <h2>Your Book List</h2>
+    <p>View your NovelNest books.
+        <br>
+        Log every story that has shaped your imagination—Novelnest is here to help you remember them all. </p>
+</div>
+
+<div class="row text-center mt-4">
+    <!-- Wish List Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>Wish List ({{ wish_list_count }})</h2>
+            {% if wish_list_books %}
+                <ul class="bookList">
+                    {% for book in wish_list_books %}
+                        <li>
+                            <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No books in your wish list.</p>
+            {% endif %}
+        </div>
     </div>
-    
-    <div class="bookListHeading col-md-4">
-    <h2>Currently Reading ({{ reading_count }})</h2>
-    {% if reading_books %}
-        <ul class="bookList">
-            {% for book in reading_books %}
-                <li>
-                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You are not currently reading any books.</p>
-    {% endif %}
-    </div>
-    
-    <div class="bookListHeading col-md-4">
-    <h2>Completed ({{ completed_count }})</h2>
-    {% if completed_books %}
-        <ul class="bookList">
-            {% for book in completed_books %}
-                <li>
-                    <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                    <a href="{% url 'book_detail' book.pk %}">View Details</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No completed books yet.</p>
-    {% endif %}
+    <div class="col-md-6">
+        <img src="{% static 'assets/images/novelnestwishlist.png' %}" alt="Wish List Image" class="img-fluid rounded">
     </div>
 </div>
-    
-<a href="{% url 'book_add' %}">Add a new book</a>
+
+<hr>
+
+<div class="row text-center mt-4">
+    <!-- Currently Reading Section -->
+    <div class="col-md-6">
+        <img src="{% static 'assets/images/novelnestcurrentlyreading.png' %}" alt="Currently Reading Image" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>Currently Reading ({{ reading_count }})</h2>
+            {% if reading_books %}
+                <ul class="bookList">
+                    {% for book in reading_books %}
+                        <li>
+                            <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You are not currently reading any books.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row text-center mt-4">
+    <!-- Completed Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>Completed ({{ completed_count }})</h2>
+            {% if completed_books %}
+                <ul class="bookList">
+                    {% for book in completed_books %}
+                        <li>
+                            <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No completed books yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <img src="{% static 'assets/images/novelnestcompleted.png' %}" alt="Completed Image" class="img-fluid rounded">
+    </div>
+</div>
+
+
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/aboutnovelnest.png' %}" alt="About NovelNest" class="img-fluid">
+        </a>
+    </div>
+
+    </div>
 
 <!-- Search Bar -->
 <div class="searchBar text-center">
