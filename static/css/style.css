@@ -223,6 +223,23 @@ h1 {
 
 /* Login Page Styling */
 
+/* Signup Page Styling */
+
+.signUpContainer {
+    padding: 40px;
+}
+
+form .btn-link {
+    text-decoration: underline;
+    color: #007bff;
+}
+
+form .btn-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+
 /* Add Book Page Styling */
 
 .addEditBookContainer {
