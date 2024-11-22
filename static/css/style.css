@@ -108,7 +108,7 @@ h1 {
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 300px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,15 +118,14 @@ h1 {
 
 .banner-text {
     text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.2); /* Optional background for better readability */
+    padding: 100px;
     border-radius: 0px;
 }
 
 .banner h1 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    color: black;
+    font-size: 4.5rem;
+    margin-bottom: 100px;
 }
 
 .banner p {
