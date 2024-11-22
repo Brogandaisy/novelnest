@@ -1,16 +1,59 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block banner_image %}{% static 'assets/images/novelnestbanner.png' %}{% endblock %}
-{% block banner_title %}Book Information{% endblock %}
-{% block banner_subtitle %}Find out more about the book and leave a review{% endblock %}
-
 {% block content %}
-    <h1>{% if object %}Edit Book{% else %}Add Book{% endif %}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url 'book_list' %}">Cancel</a>
+
+<div class= pageWelcome>
+    <h2>Add a Book</h2>
+    <p>Log every story that has shaped your imagination—Novelnest is here to help you remember them all.</p>
+</div>
+
+<div class="addEditBookContainer">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">{% if object %}Edit Book{% else %}{% endif %}</h1>
+            
+            <form method="post" class="p-4 shadow rounded bg-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button type="submit" class="btn btnMain">Save</button>
+                    <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/aboutnovelnest.png' %}" alt="About NovelNest" class="img-fluid">
+        </a>
+    </div>
+
+    <!-- Search Bar -->
+<div class="search-section text-center">
+    <h1>Search Our Books</h1>
+            <form method="get" action="{% url 'book_search' %}">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search books..." value="{{ query|default:'' }}">
+                </div>
+                <br>
+                <button type="submit" class="btn btnMain">Search</button>
+            </form>
+</div>
+
+
     {% endblock %}

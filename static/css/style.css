@@ -103,7 +103,7 @@ h1 {
 }
 
 .pageWelcome {
-    padding: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 
@@ -222,6 +222,28 @@ h1 {
 }
 
 /* Login Page Styling */
+
+/* Add Book Page Styling */
+
+.addEditBookContainer {
+    margin: 10px;
+    padding-bottom: 20px;
+}
+
+form {
+    
+}
+
+form button {
+    width: 100px;
+    margin-right: 10px;
+}
+
+form a {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 /* Footer Styling */
 
