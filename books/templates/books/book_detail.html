@@ -9,42 +9,79 @@
 {% block content %}
 <div class="bookDetailContainer">
     <div class="row">
-        <div class="col-sm-8">
-<h1>{{ object.title }}</h1>
-<p>Author: {{ object.author }}</p>
-<p>Genre: {{ object.get_genre_display }}</p>
-<p>Status: {{ object.status }}</p>
-<a href="{% url 'book_edit' book.pk %}">Edit</a>
-<a href="{% url 'book_delete' book.pk %}">Delete</a>
-    </div>
-
-    <div class="col-sm-4">
-<h2>Reviews</h2>
-{% if reviews %}
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <strong>{{ review.user }}:</strong> {{ review.content }} <br>
-                <small>Posted on {{ review.created_at }}</small>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No reviews yet. Be the first to review this book!</p>
-{% endif %}
-
-{% if review_form %}
-<h2>Leave a Review</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ review_form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit Review</button>
-</form>
-{% endif %}
-    </div>
+        <!-- Book Details Section -->
+        <div class="col-md-6 text-left book-detail-section">
+            <h1>{{ object.title }}</h1>
+            <p><strong>Author:</strong> {{ object.author }}</p>
+            <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
+            <p><strong>Status:</strong> {{ object.status }}</p>
+            <div class="mt-3">
+                <a href="{% url 'book_edit' object.pk %}" class="btn btnMain">Edit</a>
+                <a href="{% url 'book_delete' object.pk %}" class="btn btnSecond">Delete</a>
+            </div>
         </div>
+
+        <!-- Image Section -->
+        <div class="col-md-6 text-center book-image-section">
+            <img src="{% static 'assets/images/bookDetails.png' %}" alt="{{ object.title }}" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Reviews</h2>
+            {% if reviews %}
+                <ul>
+                    {% for review in reviews %}
+                        <li>
+                            <strong>{{ review.user }}:</strong> {{ review.content }} <br>
+                            <small>Posted on {{ review.created_at }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet. Be the first to review this book!</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Leave a Review Section -->
+    {% if review_form %}
+    <div class="row mt-3">
+        <div class="col-12">
+            <h2>Leave a Review</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
+<div class="d-flex justify-content-center mt-4">
+<a class="btn btnMain" btnMain href="{% url 'book_list' %}">Back to Book List</a>
+    </div>
 
-<a href="{% url 'book_list' %}">Back to Book List</a>
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/aboutnovelnest.png' %}" alt="About NovelNest" class="img-fluid">
+        </a>
+    </div>
+
+
 {% endblock %}
