@@ -135,6 +135,14 @@ h1 {
 
 /* HomePage Styling */
 
+.welcome h2 {
+    text-align: center;
+}
+
+.welcome p {
+    text-align: center;
+}
+
 .imgCenter {
     display: block;
     margin-left: auto;
@@ -142,6 +150,24 @@ h1 {
     width: 100%;
   }
 
+.bookCards {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.bookCards h2 {
+    padding-bottom: 30px;
+}
+
+.img-fluid {
+    border-radius: 8px; 
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
 
 /* Book List Page Styling */
 

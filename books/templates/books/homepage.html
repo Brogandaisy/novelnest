@@ -1,24 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <div class="container mt-5">
-
+    <div class="welcome">
+<h2>Welcome to NovelNest!</h2>
+<p>Did a book change your life? Add it to your Novelnest and tell the world why!</p>
+    </div>
     <!-- Navigation Buttons -->
     <div class="row text-center mt-4">
         <div class="col-md-4">
-            <a href="{% url 'book_list' %}" class="btn btnView btn-block">View Your Books</a>
+            <a href="{% url 'book_list' %}">
+                <img src="{% static 'assets/images/viewyourbook.png' %}" alt="View Your Books" class="img-fluid">
+            </a>
         </div>
         <div class="col-md-4">
-            <a href="{% url 'book_search' %}" class="btn btnSearch btn-block">Search Books</a>
+            <a href="{% url 'book_search' %}">
+                <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+            </a>
         </div>
         <div class="col-md-4">
-            <a href="{% url 'book_add' %}" class="btn btnAdd btn-block">Add a New Book</a>
+            <a href="{% url 'book_add' %}">
+                <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+            </a>
         </div>
-    </div>
+        </div>
+        <div>
+            <a href="{% url 'signup' %}">
+                <img class= "img-fluid" src="{% static 'assets/images/createaccount.png' %}" alt="Novelnest">
+            </a>
+        </div>
 
-    <img class= "imgCenter" src="static/assets/images/NovelNest.png" alt="Novelnest">
     <!-- Recently Added Books -->
+<div class="bookCards">
     <h2 class="mt-6">Recently Added Books</h2>
     <div class="row">
         {% for book in recent_books %}
@@ -37,8 +52,14 @@
             <p>No recent books available.</p>
         {% endfor %}
     </div>
+</div>
+
+<div>
+        <img class= "img-fluid" src="{% static 'assets/images/NovelNest.png' %}" alt="Novelnest">
+</div>
 
     <!-- Top Reviewed Books -->
+<div class="bookCards">
     <h2 class="mt-3">Top Reviewed Books</h2>
     <div class="row">
         {% for book in most_reviewed_books %}
@@ -57,5 +78,6 @@
             <p>No top-reviewed books available.</p>
         {% endfor %}
     </div>
+</div>
 </div>
 {% endblock %}
