@@ -102,6 +102,11 @@ h1 {
     color: #555;
 }
 
+.pageWelcome {
+    padding: 20px;
+    text-align: center;
+}
+
 /* Banner Styling */
 
 .banner {
@@ -171,16 +176,6 @@ h1 {
 
 /* Book List Page Styling */
 
-.pageBox {
-    border-style: solid;
-    border-color: #fab400;
-    border-radius: 10px;
-    background-color: white;
-    border-spacing: 1px;
-    display: inline;
-    text-align: center;
-}
-
 .bookListHeading h2 {
     font-weight: 900;
 }
@@ -193,10 +188,6 @@ h1 {
     padding: 20px;
 }
 
-.pageWelcome {
-    padding: 20px;
-    text-align: center;
-}
 /* Book Detail Page Styling */
 
 
@@ -215,6 +206,14 @@ h1 {
     list-style: none;
     gap: 20px;
     padding: 0;
+}
+
+.search-section {
+    padding: 20px;
+}
+
+.bookSearchContainer {
+    padding: 30px;
 }
 
 /* Login Page Styling */

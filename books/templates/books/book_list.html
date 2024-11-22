@@ -112,17 +112,15 @@
     </div>
 
 <!-- Search Bar -->
-<div class="searchBar text-center">
-    <h2>Search Our Books...</h2>
-    <form method="get" action="{% url 'book_search' %}">
-        <input
-                type="text"
-                name="q"
-                placeholder="Search books..."
-                value="{{ request.GET.q|default:'' }}"
-            />
-            <button type="submit">Search</button>
-     </form>
+<div class="search-section text-center">
+    <h1>Search Our Books</h1>
+            <form method="get" action="{% url 'book_search' %}">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search books..." value="{{ query|default:'' }}">
+                </div>
+                <br>
+                <button type="submit" class="btn btnMain">Search</button>
+            </form>
 </div>
 
 {% endblock %}

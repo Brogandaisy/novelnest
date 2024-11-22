@@ -6,34 +6,59 @@
 {% block banner_subtitle %}Search for books uploaded by other users and read the reviews{% endblock %}
 
 {% block content %}
-<div class="bookSearch text-center">
-<h1>Search Our Books</h1>
 
-<form method="get" action="{% url 'book_search' %}">
-    <input type="text" name="q" placeholder="Search books..." value="{{ query|default:'' }}">
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
-<br>
-<br>
-<div class= searchResults>
-{% if search_results %}
-    <ul>
-        {% for book in search_results %}
-            <li>
-                <strong>{{ book.title }}</strong> by {{ book.author }}
-                <a href="{% url 'book_detail' book.pk %}">View Book</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    {% if query %}
-        <p>No books found matching your search criteria.</p>
-    {% endif %}
-{% endif %}
+<div class= pageWelcome>
+    <h2>Reader's block?</h2>
+    <p>Let us help you find your next page-turner.</p>
+ </div>
+
+ <div class="bookSearchContainer">
+    <!-- Row for Image and Search -->
+    <div class="row">
+        <!-- Image Section -->
+        <div class="col-md-6 text-center search-image-section">
+            <img src="{% static 'assets/images/bookDetails.png' %}" alt="Search Books" class="img-fluid">
+        </div>
+
+        <!-- Search Section -->
+        <div class="col-md-6 text-center search-section">
+            <h1>Search Our Books</h1>
+            <form method="get" action="{% url 'book_search' %}">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search books..." value="{{ query|default:'' }}">
+                </div>
+                <br>
+                <button type="submit" class="btn btnMain">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Row for Search Results -->
+    <div class="row mt-5">
+        <div class="col-12 text-center searchResults">
+            {% if search_results %}
+                <h2>Search Results</h2>
+                <ul class="list-unstyled">
+                    {% for book in search_results %}
+                        <li>
+                            <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                            <a href="{% url 'book_detail' book.pk %}" class="btn btnMain mt-2">View Book</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% if query %}
+                    <h3>No books found matching your search criteria.</h3>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
 </div>
 
-<a href="{% url 'book_list' %}">Back to Book List</a>
-</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <a class="btn btnMain" btnMain href="{% url 'book_list' %}">Back to Book List</a>
+        </div>
 
 <!-- Recently Added Books -->
 <div class="container mt-5">
@@ -77,5 +102,23 @@
 </div>
 </div>
 </div>
+
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/aboutnovelnest.png' %}" alt="About NovelNest" class="img-fluid">
+        </a>
+    </div>
 
 {% endblock %}
