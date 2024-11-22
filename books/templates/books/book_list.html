@@ -24,7 +24,7 @@
                     {% for book in wish_list_books %}
                         <li>
                             <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                            <a class="btn btnSecond" href="{% url 'book_detail' book.pk %}">View Details</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -53,7 +53,7 @@
                     {% for book in reading_books %}
                         <li>
                             <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                            <a class="btn btnSecond" href="{% url 'book_detail' book.pk %}">View Details</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -76,7 +76,7 @@
                     {% for book in completed_books %}
                         <li>
                             <strong>{{ book.title }}</strong> by {{ book.author }} <br>
-                            <a href="{% url 'book_detail' book.pk %}">View Details</a>
+                            <a class="btn btnSecond" href="{% url 'book_detail' book.pk %}">View Details</a>
                         </li>
                     {% endfor %}
                 </ul>

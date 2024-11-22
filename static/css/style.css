@@ -182,6 +182,11 @@ h1 {
 
 .bookList {
     list-style: none;
+    line-height: 40px;
+}
+
+.bookList li {
+    font-size: large;
 }
 
 .searchBar {
