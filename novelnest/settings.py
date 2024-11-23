@@ -60,6 +60,8 @@ MIDDLEWARE = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 

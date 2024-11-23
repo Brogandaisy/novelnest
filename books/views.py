@@ -19,6 +19,8 @@ from .forms import SearchForm, ReviewForm
 from django.db.models import Q
 from django.db.models import Count
 from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import TemplateView
+
 
 
 
