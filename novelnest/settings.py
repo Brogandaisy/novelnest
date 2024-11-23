@@ -28,7 +28,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "127.0.0.1",  # Localhost
     "8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net",  # Gitpod URL
-    "novelneste.herokuapp.com", "localhost", #Heroku App
+    "novelnest.herokuapp.com", "localhost", #Heroku App
 
 ]
 
