@@ -172,26 +172,15 @@ h1 {
 /* Signup Page Styling */
 
 .accountContainer {
+    margin: 10px;
+    padding-bottom: 20px;
     padding: 40px;
-}
-
-form .btn-link {
-    text-decoration: underline;
-    color: #007bff;
-}
-
-form .btn-link:hover {
-    color: #0056b3;
-    text-decoration: none;
 }
 
 
 /* Add Book Page Styling */
 
-.addEditBookContainer {
-    margin: 10px;
-    padding-bottom: 20px;
-}
+
 
 form {
     

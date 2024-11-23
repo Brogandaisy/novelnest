@@ -2,12 +2,40 @@
 {% load static %}
 
 {% block content %}
-    <h1>Delete Book</h1>
-    <p>Are you sure you want to delete "{{ object.title }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, delete</button>
-    </form>
-    <a href="{% url 'book_list' %}">Cancel</a>
+<div class="accountContainer">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h1>Delete Book</h1>
+          <div class="p-4 shadow rounded bg-light">
+            <p>Are you sure you want to delete "{{ object.title }}"?</p>
+            <form method="post" class="d-flex align-items-center">
+                {% csrf_token %}
+                <button class="btn btnMain">Delete</button>
+                <a class="btn btnSecond" href="{% url 'book_list' %}">Cancel</a>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+
+    <!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/viewyourbook.png' %}" alt="View Your Books" class="img-fluid">
+        </a>
+    </div>
+
     {% endblock %}
 
