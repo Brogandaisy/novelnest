@@ -11,8 +11,10 @@
             <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
             <p><strong>Status:</strong> {{ object.status }}</p>
             <div class="mt-3">
+                {% if user.is_authenticated and book.added_by == user %}
                 <a href="{% url 'book_edit' object.pk %}" class="btn btnMain">Edit</a>
                 <a href="{% url 'book_delete' object.pk %}" class="btn btnSecond">Delete</a>
+                {% endif %}
             </div>
         </div>
 

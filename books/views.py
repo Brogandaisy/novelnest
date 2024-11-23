@@ -63,7 +63,7 @@ class BookListView(LoginRequiredMixin, ListView):
 
 
 # Detailed Book View - This shows further details of the book
-class BookDetailView(LoginRequiredMixin, DetailView):
+class BookDetailView(DetailView):
     model = Book
     template_name = "books/book_detail.html"
 
@@ -167,7 +167,9 @@ class AdminOnlyView(ListView):
     model = Book
     template_name = "books/admin_books.html"  # Admin-only template
 
-class BookSearchView(LoginRequiredMixin, ListView):
+# Book Search
+
+class BookSearchView(ListView):
     model = Book
     template_name = "books/book_search.html"
     context_object_name = "search_results"
