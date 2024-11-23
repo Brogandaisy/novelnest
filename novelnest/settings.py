@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",  # Localhost
     "8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net",  # Gitpod URL
+    "novelneste.herokuapp.com", "localhost", #Heroku App
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -57,7 +59,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 

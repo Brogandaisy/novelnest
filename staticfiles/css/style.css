@@ -1,0 +1,270 @@
+/* Base Template Styling */
+
+body {
+    font-family: Playfair Display, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d9d9d9;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+}
+
+header h2 {
+    font-size: medium;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+header ul li {
+    display: inline;
+    font-size: x-large;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+header ul li a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-block {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.btnMain {
+    background-color: #fab400;  
+}
+
+.btnSecond {
+    background-color: #333; 
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.text-center {
+    color: #555;
+}
+
+.pageWelcome {
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* HomePage Styling */
+
+.welcome h2 {
+    text-align: center;
+}
+
+.welcome p {
+    text-align: center;
+}
+
+.imgCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+.bookCards {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.bookCards h2 {
+    padding-bottom: 30px;
+}
+
+.img-fluid {
+    border-radius: 8px; 
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+/* Book List Page Styling */
+
+.bookListHeading h2 {
+    font-weight: 900;
+}
+
+.bookList {
+    list-style: none;
+    line-height: 40px;
+}
+
+.bookList li {
+    font-size: large;
+}
+
+.searchBar {
+    padding: 20px;
+}
+
+/* Book Detail Page Styling */
+
+
+.bookDetailContainer {
+    padding: 100px;
+}
+
+/* Book Search Page Styling */
+
+.bookSearch {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.searchResults ul {
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+}
+
+.search-section {
+    padding: 20px;
+}
+
+.bookSearchContainer {
+    padding: 30px;
+}
+
+/* Login Page Styling */
+
+
+
+/* Signup Page Styling */
+
+.accountContainer {
+    margin: 10px;
+    padding-bottom: 20px;
+    padding: 40px;
+}
+
+
+/* Add Book Page Styling */
+
+
+
+form {
+    
+}
+
+form button {
+    width: 100px;
+    margin-right: 10px;
+}
+
+form a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* Footer Styling */
+
+footer {
+    background-color: #fab400;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    color: #f0a500;
+    text-decoration: underline;
+}
+
+.site-footer .footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer .footer-links li {
+    margin-bottom: 10px;
+}
+
+.site-footer .social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.site-footer .social-links li a {
+    background-color: #555;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.site-footer .social-links li a:hover {
+    background-color: #fab400;
+    color: #333;
+}
+
+.site-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.text-center {
+    text-align: center;
+}
+
