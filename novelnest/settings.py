@@ -27,11 +27,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",  # Localhost
-    "8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net",  # Gitpod URL
-    'novelnest.herokuapp.com', #Heroku App
-]
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net"
