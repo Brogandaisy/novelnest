@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class= "pageWelcome container">
+    <h2>About NovelNest</h2>
+    <p>The ultimate home for your books and reviews.</p>
+    <p> what you’ve read, plan what’s next, and share your love of stories with others.</p>
+    </div>
+<div class="container">
+<div class="row text-center mt-4">
+    <!-- Wish List Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>NovelNest</h2>
+            <h4>Welcome to the nest where your literary adventures take flight.</h3>
+                <br>
+            <p>Novelnest is your personal space to track, explore, and celebrate your reading journey. 
+                Whether you’re diving into a classic or discovering the next bestseller, Novelnest helps you catalogue books you’ve read,
+                create a wishlist of titles to explore, and share reviews with a vibrant community of book lovers. With intuitive tools
+                to organise your library and personalised recommendations, we make it easy to nurture your love for reading—all in one place. 
+            </p>            
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <img src="{% static 'assets/images/aboutnovelnest1.png' %}" alt="Wish List Image" class="img-fluid rounded">
+    </div>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.png' %}" alt="Add a New Book" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.png' %}" alt="Search Books" class="img-fluid">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/viewyourbook.png' %}" alt="View Your Books" class="img-fluid">
+        </a>
+    </div>
+
+
+{% endblock %}

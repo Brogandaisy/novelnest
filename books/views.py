@@ -220,3 +220,6 @@ class BookPublicDetailView(LoginRequiredMixin, DetailView):
         else:
             messages.error(request, "There was an error submitting your review.")
             return self.get(request, *args, **kwargs)
+
+def about(request):
+    return render(request, 'books/about.html')

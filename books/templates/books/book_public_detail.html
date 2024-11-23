@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block banner_image %}{% static 'assets/images/novelnestbanner.png' %}{% endblock %}
-{% block banner_title %}Book Information{% endblock %}
-{% block banner_subtitle %}Find out more about the book and leave a review{% endblock %}
-
 {% block content %}
 <h1>{{ object.title }}</h1>
 <p>Author: {{ object.author }}</p>

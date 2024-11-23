@@ -18,8 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from books.views import signup
-from books.views import homepage
+from books.views import about, homepage
 from django.contrib.auth.views import LogoutView
+from books.views import about
+
 
 
 
@@ -30,5 +32,6 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/", signup, name="signup"),
     path("books/", include("books.urls")),
+    path('about/', about, name='about'),
     path('', homepage, name='homepage'),
 ]

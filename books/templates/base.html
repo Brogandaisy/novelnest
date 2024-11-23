@@ -22,7 +22,7 @@
                 <a href="{% url 'book_search' %}">Search</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'book_search' %}">About</a>
+                <a href="{% url 'about' %}">About</a>
             </li>
             {% if user.is_authenticated %}
                     <li>
@@ -34,8 +34,9 @@
                 {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
-            </ul>
-    </header>
+                </ul>
+            </header>
+
     
     <main>
         {% block content %}{% endblock %}
