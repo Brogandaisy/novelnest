@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "novelnest",
     "books",
 ]
 
@@ -65,7 +66,7 @@ ROOT_URLCONF = "novelnest.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "novelnest/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -95,7 +96,7 @@ DATABASES = {
     }
 }
 
-LOGIN_REDIRECT_URL = "/books/"  # Redirect to the book list after login
+LOGIN_REDIRECT_URL = "/"  # Redirect to the book list after login
 LOGOUT_REDIRECT_URL = "/"  # Redirect to the homepage after logout
 
 

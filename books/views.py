@@ -18,6 +18,8 @@ from .forms import ReviewForm
 from .forms import SearchForm, ReviewForm
 from django.db.models import Q
 from django.db.models import Count
+from django.contrib.auth.views import PasswordChangeView
+
 
 
 # Create your views here.
@@ -177,6 +179,12 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
+
+#Password change page
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = "registration/password_change_form.html"  # Ensure this file exists
+    success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
 
     # Admin-Only View
 
