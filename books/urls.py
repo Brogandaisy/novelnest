@@ -19,8 +19,6 @@ urlpatterns = [
     ),  # Delete a book
     path("search/", views.BookSearchView.as_view(), name="book_search"),
     # Book search
-    path("public/<int:pk>/", views.BookPublicDetailView.as_view(), name="book_public_detail"),
-    # General all book view]
     path("about/", views.about, name="about"),
     # About page
 ]

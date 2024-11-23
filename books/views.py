@@ -201,6 +201,7 @@ class BookSearchView(ListView):
             )
         return Book.objects.none()  # Return empty QuerySet if no query
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get("q", "")
@@ -213,36 +214,6 @@ class BookSearchView(ListView):
         return context
 
 
-
-class BookPublicDetailView(LoginRequiredMixin, DetailView):
-    model = Book
-    template_name = "books/book_public_detail.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["reviews"] = self.object.reviews.all()
-        context["review_form"] = ReviewForm()
-        return context
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-
-    # Ensure the checkbox for "Have you read this book?" is checked
-        if not request.POST.get("read_confirmation", False):
-            messages.error(request, "You must confirm you have read this book to leave a review.")
-            return redirect(self.object.get_absolute_url())
-
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.book = self.object
-            review.user = request.user
-            review.save()
-            messages.success(request, "Your review has been submitted!")
-            return redirect(self.object.get_absolute_url())
-        else:
-            messages.error(request, "There was an error submitting your review.")
-            return self.get(request, *args, **kwargs)
 
 def about(request):
     return render(request, 'books/about.html')

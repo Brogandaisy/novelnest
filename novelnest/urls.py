@@ -21,6 +21,8 @@ from books.views import signup
 from books.views import about, homepage
 from django.contrib.auth.views import LogoutView
 from books.views import about
+from django.contrib.auth import views as auth_views
+
 
 
 
@@ -30,6 +32,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/logout/", LogoutView.as_view(next_page="/"), name="logout"),
     path("accounts/", include("django.contrib.auth.urls")),
+    path('accounts/profile/', auth_views.TemplateView.as_view(template_name='accounts/profile.html'), name='account'),
     path("signup/", signup, name="signup"),
     path("books/", include("books.urls")),
     path('about/', about, name='about'),

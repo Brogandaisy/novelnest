@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Account Details{% endblock %}
+
+{% block content %}
+<div class="accountContainer">
+    <h1>Account Details</h1>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+
+    <div class="mt-4">
+        <a href="{% url 'password_change' %}" class="btn btnMain">Change Password</a>
+    </div>
+</div>
+{% endblock %}
