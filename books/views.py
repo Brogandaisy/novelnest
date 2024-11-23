@@ -63,27 +63,43 @@ class BookListView(LoginRequiredMixin, ListView):
 
 
 # Detailed Book View - This shows further details of the book
+from django.utils.timezone import now
+
 class BookDetailView(DetailView):
     model = Book
     template_name = "books/book_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(f"Book status: {self.object.status}")
         context["reviews"] = self.object.reviews.all()  # Fetch all reviews for the book
-        if (
-            self.object.status == "Completed"
-        ):  # Show the review form only if the book is completed
-            context["review_form"] = ReviewForm()
+        
+        if self.request.user.is_authenticated:
+            # Only show the review form to logged-in users
+            if self.object.status == "Completed" or self.object.added_by != self.request.user:
+                context["review_form"] = ReviewForm()
         return context
-
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if self.object.status != "Completed":
-            messages.error(request, "You can only review books marked as Completed.")
+
+        # Check if the user is logged in
+        if not request.user.is_authenticated:
+            messages.error(request, "You must be logged in to leave a review.")
             return redirect(self.object.get_absolute_url())
 
+        # Check if the book uploader is allowed to leave a review (status must be Completed)
+        if self.object.added_by == request.user and self.object.status != "Completed":
+            messages.error(request, "You can only leave a review if the book is marked as Completed.")
+            return redirect(self.object.get_absolute_url())
+
+        # Check if non-uploaders have ticked the checkbox
+        if self.object.added_by != request.user:
+            has_read = request.POST.get("has_read")
+            if not has_read:
+                messages.error(request, "You must confirm you have read the book before leaving a review.")
+                return redirect(self.object.get_absolute_url())
+
+        # Handle the review form
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
@@ -95,6 +111,9 @@ class BookDetailView(DetailView):
         else:
             messages.error(request, "There was an error submitting your review.")
             return self.get(request, *args, **kwargs)
+
+
+
 
 
 # Creating a new book to the users list of books - User must be logged in to add a book
@@ -192,6 +211,8 @@ class BookSearchView(ListView):
             review_count=Count("reviews")
         ).order_by("-review_count")[:3]
         return context
+
+
 
 class BookPublicDetailView(LoginRequiredMixin, DetailView):
     model = Book
