@@ -4,7 +4,7 @@ Project 4 - Brogan Carpenter
 [View Live Project](https://taylorswift-erastour-0edb3552fd4f.herokuapp.com/)
 
 1. [About the Project](#about-the-project)
-2. [Agile Framework] (#agile-framework)
+2. [Agile Framework](#agile-framework)
 3. [Features](#features)
 4. [Testing](#testing)
 5. [Bugs](#bugs)
@@ -32,7 +32,9 @@ The site is easy to use and looks good on both desktop and mobile.
 NovelNest is built to make life easier for readers. It’s not just about tracking books – it’s about enjoying the process of reading, reflecting on what you’ve read, and keeping your library organised. Whether you’re tackling a massive to-read pile or keeping track of favourites, NovelNest is your go-to tool.
 
 ## Wireframes / Initial Design
-
+![Homepage](static/assets/images/readMe/novelnestwireframe1.png)
+![Homepage](static/assets/images/readMe/novelnestwireframe2.png)
+![Book View](static/assets/images/readMe/novelnestwireframe3.png)
 
 
 ## NovelNest Visuals
@@ -283,52 +285,48 @@ In my models.py, the Book model represents a book's details, allowing users to a
 
 
 # Testing
-To test the functionality of the program I used the following systems:
+To ensure my project was functioning correctly and free of errors, I conducted thorough testing across different aspects of the application. This included validating my HTML and CSS, checking server logs during deployment, and performing manual user testing.
 
-- pep8ci.herokuapp.com / Which checks for any errors in my python code
-- Heroku / App deployment, testing the user experience
+## Testing HTML and CSS
+- I used online validation services to check my HTML and CSS for errors, ensuring the structure and styling were correct.
+- Both passed without any errors, confirming that my code adheres to web standards.
 
-Testing included typing in the correct requirements for each question multiple times to show it provides the right data each time, but equally testing incorrect data entry, for example: using a number which was not listed. See image below, when answering the album list with '0' it returned an error message, which shows the code is working.
+![HTML Test](static/assets/images/readMe/htmltesting.png)
+![CSS Test](static/assets/images/readMe/csstesting.png)
 
-I also tried using incorrect formats such as string/words which displayed the correct error message also.
+## Testing During Deployment
+- I utilised the Heroku command: heroku logs --tail --app your-app-name to monitor logs for errors during deployment.This helped me identify and fix issues with my Django code, database migrations, or server setup.
 
-When testing on pep8, the errors returned were line character maximums and function spacing errors. This was updated and tested again.
+## Manual User Testing
+I interacted with the app as a user to test functionality and workflows:
+- Creating accounts: Tested the user registration process to ensure accounts could be created without issues.
+- Managing books: Added, edited, and deleted books multiple times to confirm the functionality was working as expected.
+- Leaving reviews: Submitted reviews for books to ensure the review system operated correctly and saved data properly.
 
-<table>
-  <thead>
-    <tr>
-      <th>Function Test</th>
-      <th>Test Response</th>
-      <th>Test Reaction/Fix</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Google Sheet Connection</td>
-      <td>After printing the data frames to the terminal the response returned 'Unable to locate file name taylorswift_erastour'</td>
-      <td>Ensured the creds.json file was updated and the google sheet had authroised access to edit. (Adding the client email taylorswift-erastour@macro-virtue-429510-d5.iam.gserviceaccount.com)</td>
-    </tr>
-    <tr>
-       <td>Question Number System</td>
-       <td>After checking different numbers into the user input box, I can check the error messages displayed. When using numbers 1-6, the functions returned the answers correctly, but when using a number outside of this range, an error message returned. On one occasion, when entering '5' the function was not called, and data answers were produced and no error message were displayed.</td>
-      <td>When checking the function for question 5, it was the 'favourite song' function, when going back into the code i realised there had been some spacing issues which resulted in the function not being called. Once this was fixed, i ran the test of question 5 again, where it displayed the favourite song.</td>
-    </tr>
-    <tr>
-      <td>Deployment Tests</td>
-      <td>When deploying the code to the app platform heroku, it kept providing an error message of not locating the creds.json file, or gspread.</td>
-      <td>I went in and tested each option, checking the creds.json file, the settings on heroku, and noticed the additional config var was not added, and the programs and code libraries were not all installed. Once installed, and config var was added, the file was called without issue.</td>
-    </tr>
-    <tr>
-    <td>Testing User Messaging</td>
-    <td>When first writing my code and doing the first test, I noticed the text displayed to the user was in an incorrect order. This meant understanding where to put the user input was confusing.</td></td>
-    <td>I adjusted the order of the print text and when they were called within my python code to amend the order the user read the text. I also added line breaks, to make it even clearer when using the while loop and getting the data answers.</td>
- 
-  </tbody>
-</table>
+I repeated these actions after every significant code edit to confirm changes didn’t break existing functionality.
 
+## Testing on Devices
+I tested my app manually on different devices like phones, tablets, and desktops. This helped me check that the layout, design, and features worked well and looked good on all screen sizes.
 
-![Testing](https://github.com/Brogandaisy/tayorswift_erastour/blob/main/assets/images/ts_app_display5.png)
+Devices checked:
+- iPhone 15 Pro - Chrome
+- iPhone 12 Mini - Safari
+- Windows 11 - Edge
+- Android Samsung Galaxy S23 - Firefox
+- iPad 11 Pro - Safari
+
+See examples of visuals of my device testing.
+
+![iPhone 15 Pro](static/assets/images/readMe/iphone15.png)
+![Android Galaxy](static/assets/images/readMe/androidgalaxy.png)
+![iPad11](static/assets/images/readMe/ipad111.png)
+
+## Lighthouse Testing
+I used Lighthouse testing to evaluate the performance, accessibility, and best practices of my app, ensuring it meets web standards and provides a good user experience.
+
+My first Lighthouse test returned a less than average score. With suggestions to resize and compress images and remove any unwanted css. I then made these changes and the score improved.
+
+![First Lighthouse Test](static/assets/images/readMe/lighthouse1.png)
 
 # Bugs
 During the development, testing, and deployment of the project, I encountered a range of bugs that required careful troubleshooting and debugging. Here’s a summary of some of the key issues:
