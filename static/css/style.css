@@ -139,9 +139,12 @@ h1 {
 
 /* Book Detail Page Styling */
 
-
 .bookDetailContainer {
-    padding: 100px;
+    padding-left: 20px;
+}
+
+.book-detail-section {
+    padding-bottom: 20px;
 }
 
 /* Book Search Page Styling */
