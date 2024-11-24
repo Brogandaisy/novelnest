@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="container bookDetailContainer">
+<div class="container">
     <div class="row">
         <!-- Book Details Section -->
-        <div class="col-12 col-md-6 text-left book-detail-section">
+        <div class="col-12 col-md-6 text-left">
             <h1>{{ object.title }}</h1>
             <p><strong>Author:</strong> {{ object.author }}</p>
             <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
@@ -20,7 +20,8 @@
         </div>
 
         <!-- Image Section -->
-        <div class="col-12 col-md-6 text-center book-image-section">
+        <div class="col-12 col-md-6 text-center">
+            <br>
             <img src="{% static 'assets/images/bookDetails.png' %}" alt="{{ object.title }}" class="img-fluid">
         </div>
     </div>
