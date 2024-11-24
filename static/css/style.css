@@ -141,11 +141,7 @@ h1 {
 
 
 .bookDetailContainer {
-    padding: 50px;
-}
-
-.review-textarea {
-    width: 50px; /* Adjust as needed */
+    padding: 100px;
 }
 
 /* Book Search Page Styling */
