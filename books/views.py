@@ -27,6 +27,7 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 def homepage(request):
+    print("Homepage view called")
     recent_books = Book.objects.order_by('-id')[:6]  # Get the 6 most recent books
     most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
     return render(request, 'books/homepage.html', {
