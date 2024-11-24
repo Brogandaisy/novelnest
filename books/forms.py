@@ -8,7 +8,7 @@ class ReviewForm(forms.ModelForm):
         fields = ["content"]
         widgets = {
             "content": forms.Textarea(
-                attrs={"rows": 4, "placeholder": "Write your review here..."}
+                attrs={"rows": 2, "placeholder": "Write your review here..."}
             ),
         }
 
