@@ -4,12 +4,13 @@ Project 4 - Brogan Carpenter
 [View Live Project](https://taylorswift-erastour-0edb3552fd4f.herokuapp.com/)
 
 1. [About the Project](#about-the-project)
-2. [Features](#features)
-3. [Testing](#testing)
-4. [Bugs](#bugs)
-5. [Validator Testing](#validator-testing)
-6. [Deployment](#deployment)
-7. [References](#references)
+2. [Agile Framework] (#agile-framework)
+3. [Features](#features)
+4. [Testing](#testing)
+5. [Bugs](#bugs)
+6. [Validator Testing](#validator-testing)
+7. [Deployment](#deployment)
+8. [References](#references)
 
 # About the Project
 
@@ -29,6 +30,37 @@ The site is easy to use and looks good on both desktop and mobile.
 
 ## Why use NovelNest?
 NovelNest is built to make life easier for readers. It’s not just about tracking books – it’s about enjoying the process of reading, reflecting on what you’ve read, and keeping your library organised. Whether you’re tackling a massive to-read pile or keeping track of favourites, NovelNest is your go-to tool.
+
+## Wireframes / Initial Design
+
+
+
+## NovelNest Visuals
+
+![Homepage](static/assets/images/readMe/homepage.png)
+![Log In Page](static/assets/images/readMe/login.png)
+![Book List](static/assets/images/readMe/booklist.png)
+![Add a Book](static/assets/images/readMe/addbook.png)
+![Book Detail Page](static/assets/images/readMe/bookdetail.png)
+![Search Books](static/assets/images/readMe/searchbooks.png)
+![Footer](static/assets/images/readMe/footer.png)
+
+# Agile Framework
+I used Agile frameworks to organise and manage my project efficiently. GitHub Projects was the main tool I used to implement this system.
+
+- I created a template in Issues to work from.
+- I created issues for tasks and assigned them labels such as "must-have," "should-have," and "could-have" to prioritise what needed to be done.
+- I then created 3 x columns called, 'Todo', 'In Progress' and 'Done'.
+- I created a workflow, which instructed that when an issue was created and connected to the NovelNest Project it would automatically go into the 'Todo' category. I then can edit the issues and move them along to 'In Progress' and 'Done'.
+- To stay on track, I used milestones to set timeframes for larger sections of the project and work towards specific deadlines.
+
+This approach helped me keep my workflow organised and focus on delivering the most important features first.
+
+See examples of my Project on Github.
+
+![Issue Example Agile Framework](static/assets/images/readMe/issueagile.png)
+
+![Github Project / Agile Framework](static/assets/images/readMe/githubprojectagile.png)
 
 # Features
 
@@ -74,7 +106,7 @@ Users can submit book details via a Django form, including author, genre and tit
 ## Select a category for the book (Wish List, Currently Reading, Completed)
 A dropdown menu, created with HTML and styled using Bootstrap, lets users assign books to categories. The selection updates dynamically in the database.
 
-![Select a Category](static/assets/images/readMe/selectacategorynovelnest.png)
+![Select a Category](static/assets/images/readMe/selectacategorynorvelnest.png)
 
 ## Edit, amend or delete uploaded books, and move them between categories
 Users can edit book details using Django's update view, with form fields pre-populated from the database. When deleting a book from the users lists, an alert page is displayed to confirm deletion. The webpage redirects to the book detail page once saved, or deleted.
@@ -198,7 +230,7 @@ I used Bootstrap’s grid layout with its 12-column system to create a clean and
         </div>
     </div>
 
-![Bootstrap Grid](static/assets/images/readMe/gridpagelaout.png)
+![Bootstrap Grid](static/assets/images/readMe/gridpagelayout.png)
 
 Another example using Bootstrap utility classes like mt-3, p-4, or text-center for spacing, alignment, and text styling.
 
@@ -216,19 +248,6 @@ Another example using Bootstrap utility classes like mt-3, p-4, or text-center f
             </p>            
         </div>
     </div>
-
-# Agile Framework
-I used Agile frameworks to organise and manage my project efficiently. GitHub Projects was the main tool I used to implement this system.
-
-- I created a template in Issues to work from.
-- I created issues for tasks and assigned them labels such as "must-have," "should-have," and "could-have" to prioritise what needed to be done.
-- I then created 3 x columns called, 'Todo', 'In Progress' and 'Done'.
-- I created a workflow, which instructed that when an issue was created and connected to the NovelNest Project it would automatically go into the 'Todo' category. I then can edit the issues and move them along to 'In Progress' and 'Done'.
-- To stay on track, I used milestones to set timeframes for larger sections of the project and work towards specific deadlines.
-
-This approach helped me keep my workflow organised and focus on delivering the most important features first.
-
-See examples of my Project on Github.
 
 # Testing
 To test the functionality of the program I used the following systems:
@@ -290,21 +309,17 @@ During the development, testing, and deployment of the project, I encountered a 
 - Search Bar Issues: The search bar stopped functioning because it wasn’t pulling books from the database. The issue was traced back to using an incorrect query parameter, which was fixed by changing the parameter to q.
 - Port 8000 Not Working: The application wouldn’t run on port 8000 without starting PostgreSQL first. The issue was resolved by ensuring docker start novelnest-postgres was executed before running the server.
 - Features Not Working: When logged in and searching for books, the "edit/delete" functionality stopped working because the conditions in views.py were not correctly implemented or were not being properly passed to the template context. This issue was resolved by reviewing and scaling back the styling, ensuring template inheritance was correctly structured, and verifying that all necessary imports and Django functions were included in the appropriate views, templates, and folders.
-
-![Issue Example Agile Framework](static/assets/images/readMe/issueagile.png)
-
-![Github Project / Agile Framework](static/assets/images/readMe/githubprojectagile.png)
   
 I continuously checked for bugs by running the server with python manage.py runserver 0.0.0.0:8000 and testing functionality such as creating new users, logging in and out, viewing, adding, and deleting books, and changing passwords. Each function was tested thoroughly during development and whenever I updated styling or layouts to ensure everything worked as expected.
 
 A recurring issue I faced was features breaking due to missing or incorrect imports of Django functions in views, templates, or other files. To address this, I now thoroughly check that all necessary imports and dependencies are correctly included in the appropriate places during development.
 
 ## Styling Debug Example
-![With unused / error css clsss styling](static/assets/images/readMe/bookdetailstyling2.png)
+![With unused / error css clsss styling](static/assets/images/readMe/bookdetailstyling2.PNG)
 
-![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling3.png)
+![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling3.PNG)
 
-![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling4.png)
+![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling4.PNG)
 
 
 # Validator Testing
@@ -313,32 +328,32 @@ I tested
 
 # Deployment
 
-## Set Up My Project Locally:
+### Set Up My Project Locally:
 - I made sure my Django app was fully functional and working locally.
 - Installed necessary libraries like gunicorn, dj-database-url, and whitenoise and added them to requirements.txt.
 - Created a Procfile to specify how Heroku should run my app, e.g., web: gunicorn <my_project_name>.wsgi.
 
-## Prepare My App for Heroku:
+### Prepare My App for Heroku:
 - Ensured heroku was installed on gitpod, using the command 'Install heroic brew tap heroku/brew && brew install heroku'
 - Configured STATIC_ROOT and integrated Whitenoise to manage static files in settings.py.
 - Updated DATABASES to use dj_database_url to parse Heroku’s DATABASE_URL.
 - Checked that ALLOWED_HOSTS included Heroku’s domain.
 
-## Create My Heroku App:
+### Create My Heroku App:
 - Used heroku to create the app and connect it to my Git repository. (app = novelnest) Ensuring it was set to EU.
 - Amend and add Config Vars, including SECRET_KEY, DATABASE_URL, HEROKU_POSTGRESQL_JADE_URL and PORT.
 
-## Set Up Environment Variables:
+### Set Up Environment Variables:
 - Set environment variables like SECRET_KEY using heroku config:set.
 - Temporarily disabled collectstatic with heroku config:set DISABLE_COLLECTSTATIC=1 to avoid deployment errors until my static files were sorted.
 
-## Push My Code to Heroku:
+### Push My Code to Heroku:
 - Deployed the app by running git push heroku main.
 
-## Migrate the Database:
+### Migrate the Database:
 - After deployment, I applied database migrations on Heroku using heroku run python manage.py migrate.
 
-## Process when making changes & updating repoistory
+### Process when making changes & updating repoistory
 > git add . git commit -m "Describe your changes"
 
 > git push origin main
@@ -346,23 +361,6 @@ I tested
 > git push heroku main
 
 > heroku logs --tail --app your-app-name (This checks for any error messages)
-
-
-This project was deployed using Heroku. My code had been written using gitpod, and committed to github. I used the template repository from Code Institute.
-
-I followed the steps below to create the app display on Heroku:
-
-- Create new app, enter name and country
-- Connect to Github account and choose the correct repository
-- Select auto deployments, or choose to manually pull (auto ensures it pulls your most up to date commits from github)
-- Go to settings and adjust the following:
-- Add in your creds.json file as a config var, copy and paste from gitpod, and enter in the box (As this file is hidden from your public github repository)
-- Add in the additional config var, (port/8000)
-- Install the following buildpacks:
-- python and nodejs (ensure they are downloaded in this order)
-
-Once you have this connected, and you have commited your latest edits to github, press 'Open App' at the top of the page and it will display your running program. Here you can test further the user experience.
-![Heroku App Deployment](https://github.com/Brogandaisy/tayorswift_erastour/blob/main/assets/images/ts_heroku.png)
 
 # References
 I used the following resources to complete this project.
