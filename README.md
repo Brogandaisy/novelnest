@@ -42,6 +42,13 @@ Users can log in and log out securely using Django’s built-in authentication s
 
 {% if user.is_authenticated %}
 
+## Change Password
+The password change feature uses Django’s built-in PasswordChangeView, which allows users to securely update their passwords. I’ve customised this functionality by creating a CustomPasswordChangeView that uses a personalised form template (password_change_form.html) and a confirmation page (password_change_done.html). Both templates extend base.html to match the styling and layout of the rest of the website, providing a consistent and user-friendly experience for anyone updating their password.
+
+          class CustomPasswordChangeView(PasswordChangeView):
+              template_name = "registration/password_change_form.html"  # Ensure this file exists
+              success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
+
 ## Upload a book with details (author, title, and genre)
 Users can submit book details via a Django form, including author, genre and title, which validates input and saves the data to the database. Bootstrap is used for form styling to ensure responsive layout.
 
@@ -110,15 +117,55 @@ The BookSearchView class uses get_queryset to find books by title or author base
         return Book.objects.none()
 
 ## View book details (author, title, and reviews)
-Individual book pages dynamically pull data using Django views. The details are displayed using Bootstrap components like tables or cards for a structured and polished look.
+Individual book pages dynamically pull data using Django views. It also includes the books reviews, and shows a review form to write a review but only to logged-in users who meet certain conditions (e.g., the book they have uploaded is marked as "Completed" or they search a book which wasn't uploaded by them). 
+
+          class BookDetailView(DetailView):
+    model = Book
+    template_name = "books/book_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["reviews"] = self.object.reviews.all()  # Fetch all reviews for the book
+        
+        if self.request.user.is_authenticated:
+            # Only show the review form to logged-in users
+            if self.object.status == "Completed" or self.object.added_by != self.request.user:
+                context["review_form"] = ReviewForm()
+        return context
+
+If the user views a book which they did not upload to their account, they can leave a review but have to tick a tickbox confirming they have 'read the book'. This way, reviews stay for users who have read the book and they are trusted for other users.
+
+        if self.object.added_by != request.user:
+            has_read = request.POST.get("has_read")
+            if not has_read:
+                messages.error(request, "You must confirm you have read the book before leaving a review.")
+                return redirect(self.object.get_absolute_url())
 
 ## Dynamic data: Recently uploaded books and most-reviewed books
-The homepage uses Django queries to pull data dynamically, showing the six most recent and six most-reviewed books. These are displayed using Bootstrap carousels or card decks for a visually engaging layout.
+The homepage uses Django queries to pull data dynamically, showing the 6 most recent books and 3 most-reviewed books. These are displayed using Bootstrap card decks for a visually engaging layout. This feature has been used on various other pages, where I would like to display other books for users to see. These will change when more books are being uploaded to the database.
 
-## Customised review feature
-Users can leave reviews only for books they’ve uploaded and marked as "Completed," enforced by Django's form validation and backend logic. For other books, they must confirm they've read them by checking a tick box before submitting the review. The review submission form is styled with Bootstrap.
-[Insert your review form validation logic here]
+          def homepage(request):
+    recent_books = Book.objects.order_by('-id')[:6]  # Get the 6 most recent books
+    most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
+    return render(request, 'books/homepage.html', {
+        'recent_books': recent_books,
+        'most_reviewed_books': most_reviewed_books,
+    })
 
+## Logged in vs Logged Out Views - LoginRequiredMixin
+The LoginRequiredMixin is used throughout the class base views within books/views.py to restrict access to certain views, like the book list, ensuring only logged-in users can view them, while other views, like the book detail view, are accessible to everyone but display additional content or functionality for logged-in users.
+
+Logged In Content:
+     
+     class BookListView(LoginRequiredMixin, ListView):
+         model = Book
+         template_name = "books/book_list.html"
+
+Logged Out Content:
+     
+     class BookDetailView(DetailView):
+         model = Book
+         template_name = "books/book_detail.html"
 
 
 # Testing
@@ -170,17 +217,20 @@ When testing on pep8, the errors returned were line character maximums and funct
 ![Testing](https://github.com/Brogandaisy/tayorswift_erastour/blob/main/assets/images/ts_app_display5.png)
 
 # Bugs
-Whilst working on my program, and with each new function, I was consistently checking for bugs and errors. The following errors appeared as I wrote:
+During the development, testing, and deployment of the project, I encountered a range of bugs that required careful troubleshooting and debugging. Here’s a summary of some of the key issues:
 
-- Indent errors, where code had been written with an incorrect indent, not allowing the code to be called/read
-- Spacing errors between functions
-- The wrong function name was displayed, not allowing the correct function to be called
-- Error messages displaying disconnects to the 'gspread', 'google.oauth2.service_account' and 'Credentials' when deploying
-- Average age displaying a decimal number
+- Syntax Errors: Common mistakes like capital letters, incorrect indents, misspellings, misplaced commas, and other minor syntax issues in Django views, models, and Bootstrap styling caused disruptions.
+- File Tree Problems: Authorisation folders were placed in the wrong directories, and there were duplicate templates/registration folders. The file structure was reorganised, and settings.py was updated for static files, including fixing STATIC_ROOT = BASE_DIR / 'staticfiles'.
+- Templates Not Rendering: Templates failed to load due to an incorrectly configured static root, which was corrected to ensure templates pulled through as intended.
+- Deployment Bugs: Issues included missing whitenoise from the requirements.txt file and an incorrect database URL, both of which required updates to the configuration.
+- Review Functionality: The review feature wasn’t distinguishing between logged-in and logged-out users. Trial and error with Class-Based Views (CBVs) was used to refine the logic so the feature behaved as intended.
+- Search Bar Issues: The search bar stopped functioning because it wasn’t pulling books from the database. The issue was traced back to using an incorrect query parameter, which was fixed by changing the parameter to q.
+- Port 8000 Not Working: The application wouldn’t run on port 8000 without starting PostgreSQL first. The issue was resolved by ensuring docker start novelnest-postgres was executed before running the server.
+- Features Not Working: When logged in and searching for books, the "edit/delete" functionality stopped working because the conditions in views.py were not correctly implemented or were not being properly passed to the template context. This issue was resolved by reviewing and scaling back the styling, ensuring template inheritance was correctly structured, and verifying that all necessary imports and Django functions were included in the appropriate views, templates, and folders.
+  
+I continuously checked for bugs by running the server with python manage.py runserver 0.0.0.0:8000 and testing functionality such as creating new users, logging in and out, viewing, adding, and deleting books, and changing passwords. Each function was tested thoroughly during development and whenever I updated styling or layouts to ensure everything worked as expected.
 
-Whilst checking these at each stage of the project I was able to correct my errors as I worked, without losing track of each working function. I tested each function by using 'python3 run.py' and answering the question as the user. 
-
-No bugs remain in the project, all functions working well.
+A recurring issue I faced was features breaking due to missing or incorrect imports of Django functions in views, templates, or other files. To address this, I now thoroughly check that all necessary imports and dependencies are correctly included in the appropriate places during development.
 
 # Validator Testing
 

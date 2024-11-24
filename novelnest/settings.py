@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 
@@ -90,14 +91,11 @@ WSGI_APPLICATION = "novelnest.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "novelnest",
-        "USER": "novelnestuser",
-        "PASSWORD": "yourpassword",
-        "HOST": "127.0.0.1",
-        "PORT": "5433",
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,  # Keeps connections open for performance
+        ssl_require=True   # Enforces SSL on the connection
+    )
 }
 
 LOGIN_REDIRECT_URL = "/"  # Redirect to the book list after login
