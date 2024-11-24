@@ -5,7 +5,7 @@
 <div class="bookDetailContainer">
     <div class="row">
         <!-- Book Details Section -->
-        <div class="col-md-6 text-left book-detail-section">
+        <div class="col-12 col-md-6 text-left book-detail-section">
             <h1>{{ object.title }}</h1>
             <p><strong>Author:</strong> {{ object.author }}</p>
             <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
@@ -19,14 +19,14 @@
         </div>
 
         <!-- Image Section -->
-        <div class="col-md-6 text-center book-image-section">
+        <div class="col-12 col-md-6 text-center book-image-section">
             <img src="{% static 'assets/images/bookDetails.png' %}" alt="{{ object.title }}" class="img-fluid">
         </div>
     </div>
 
     <!-- Reviews Section -->
     <div class="reviews-section row">
-        <div class="col-md-12 text-left">
+        <div class="col-12 text-left">
         <h2>Reviews</h2>
         {% if reviews %}
             <ul>
@@ -61,7 +61,7 @@
     </div>
     
 
-    <div class="d-flex justify-content-center mt-4">
+    <div class="col-12 text-center">
 <a class="btn btnMain" btnMain href="{% url 'book_list' %}">Back to Book List</a>
     </div>
 
