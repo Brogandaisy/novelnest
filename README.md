@@ -130,6 +130,8 @@ The feature counts how many books are in each category (Wish List, Currently Rea
 
 The page layout uses a Bootstrap grid to display book lists and category counts clearly.
 
+![Book List Count](static/assets/images/readMe/booklistcount.png)
+
 ## Search bar function to search books by author or title
 The search feature uses Django ORM to query the database for books based on user input, with results displayed in real-time. 
 
@@ -248,6 +250,37 @@ Another example using Bootstrap utility classes like mt-3, p-4, or text-center f
             </p>            
         </div>
     </div>
+
+## Forms.py
+forms.py manages user input for NovelNest, by providing structured forms for specific tasks. Within my project, the ReviewForm is linked directly to the Review model, allowing users to submit and save reviews with customised styling for better usability. The SearchForm, meanwhile, provides a clean and intuitive interface for users to search for books, with validation and Bootstrap styling for a polished user experience.
+
+        from django import forms
+        from .models import Review
+
+
+        class ReviewForm(forms.ModelForm):
+        class Meta:
+            model = Review
+            fields = ["content"]
+            widgets = {
+                    "content": forms.Textarea(
+                        attrs={
+                            "rows": 2,
+                            "style": "width: 100%;", 
+                            "placeholder": "Write your review here...",
+                        }
+                                ),
+                }
+
+        class SearchForm(forms.Form):
+            query = forms.CharField(
+                max_length=100,
+                required=False,
+                widget=forms.TextInput(attrs={"placeholder": "Search for books...", "class": "form-control"}),
+            )
+## Models.py
+In my models.py, the Book model represents a book's details, allowing users to add books with specific categories. It includes fields like title and author, as well as status and genre fields, which use predefined choices to ensure consistency when categorising books. The added_by field links each book to the user who added it, and methods like __str__ and get_absolute_url provide user-friendly representations and URL paths for accessing individual book details.
+
 
 # Testing
 To test the functionality of the program I used the following systems:
