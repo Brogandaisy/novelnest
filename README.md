@@ -116,6 +116,8 @@ The BookSearchView class uses get_queryset to find books by title or author base
             )
         return Book.objects.none()
 
+![Upload a Book](static/assets/images/readMe/searcherror.png)
+
 ## View book details (author, title, and reviews)
 Individual book pages dynamically pull data using Django views. It also includes the books reviews, and shows a review form to write a review but only to logged-in users who meet certain conditions (e.g., the book they have uploaded is marked as "Completed" or they search a book which wasn't uploaded by them). 
 
@@ -166,6 +168,53 @@ Logged Out Content:
      class BookDetailView(DetailView):
          model = Book
          template_name = "books/book_detail.html"
+
+## Bootstrap Styling
+I used Bootstrap to style my project because it made it easy to create a clean, organised, and responsive design. I used its grid system to align content into rows and columns, styled buttons, forms, and navigation bars, and applied utility classes for spacing and alignment. Bootstrap’s pre-built components and responsive design features helped ensure the website looks good and works well on all screen sizes.
+
+For example:
+
+I used Bootstrap’s grid layout with its 12-column system to create a clean and organised design. By dividing the page into rows and columns, I was able to align content neatly and ensure it looks good on all screen sizes.
+
+      <div class="bookDetailContainer">
+    <div class="row">
+        <!-- Book Details Section -->
+        <div class="col-md-6 text-left book-detail-section">
+            <h1>{{ object.title }}</h1>
+            <p><strong>Author:</strong> {{ object.author }}</p>
+            <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
+            <p><strong>Status:</strong> {{ object.status }}</p>
+            <div class="mt-3">
+                {% if user.is_authenticated and book.added_by == user %}
+                <a class="btn btnMain" href="{% url 'book_edit' book.pk %}">Edit</a>
+                <a class="btn btnMain" href="{% url 'book_delete' book.pk %}">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-6 text-center book-image-section">
+            <img src="{% static 'assets/images/bookDetails.png' %}" alt="{{ object.title }}" class="img-fluid">
+        </div>
+    </div>
+
+Another example using Bootstrap utility classes like mt-3, p-4, or text-center for spacing, alignment, and text styling.
+
+        <div class="row text-center mt-4">
+    <!-- Wish List Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>NovelNest</h2>
+            <h4>Welcome to the nest where your literary adventures take flight.</h3>
+                <br>
+            <p>Novelnest is your personal space to track, explore, and celebrate your reading journey. 
+                Whether you’re diving into a classic or discovering the next bestseller, Novelnest helps you catalogue books you’ve read,
+                create a wishlist of titles to explore, and share reviews with a vibrant community of book lovers. With intuitive tools
+                to organise your library and personalised recommendations, we make it easy to nurture your love for reading—all in one place. 
+            </p>            
+        </div>
+    </div>
+
 
 
 # Testing
