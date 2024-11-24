@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['novelnest-a822349b1444.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-brogandaisy-novelnest-aq62hctwmlq.ws.codeinstitute-ide.net"
