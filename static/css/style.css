@@ -144,6 +144,10 @@ h1 {
     padding: 50px;
 }
 
+.review-textarea {
+    width: 50px; /* Adjust as needed */
+}
+
 /* Book Search Page Styling */
 
 .bookSearch {
