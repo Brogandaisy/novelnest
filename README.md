@@ -116,7 +116,7 @@ The BookSearchView class uses get_queryset to find books by title or author base
             )
         return Book.objects.none()
 
-![Upload a Book](static/assets/images/readMe/searcherror.png)
+![Search Bar Error - De Bug Example](static/assets/images/readMe/searcherror.png)
 
 ## View book details (author, title, and reviews)
 Individual book pages dynamically pull data using Django views. It also includes the books reviews, and shows a review form to write a review but only to logged-in users who meet certain conditions (e.g., the book they have uploaded is marked as "Completed" or they search a book which wasn't uploaded by them). 
@@ -198,6 +198,8 @@ I used Bootstrap’s grid layout with its 12-column system to create a clean and
         </div>
     </div>
 
+![Bootstrap Grid](static/assets/images/readMe/gridpagelaout.png)
+
 Another example using Bootstrap utility classes like mt-3, p-4, or text-center for spacing, alignment, and text styling.
 
         <div class="row text-center mt-4">
@@ -215,7 +217,18 @@ Another example using Bootstrap utility classes like mt-3, p-4, or text-center f
         </div>
     </div>
 
+# Agile Framework
+I used Agile frameworks to organise and manage my project efficiently. GitHub Projects was the main tool I used to implement this system.
 
+- I created a template in Issues to work from.
+- I created issues for tasks and assigned them labels such as "must-have," "should-have," and "could-have" to prioritise what needed to be done.
+- I then created 3 x columns called, 'Todo', 'In Progress' and 'Done'.
+- I created a workflow, which instructed that when an issue was created and connected to the NovelNest Project it would automatically go into the 'Todo' category. I then can edit the issues and move them along to 'In Progress' and 'Done'.
+- To stay on track, I used milestones to set timeframes for larger sections of the project and work towards specific deadlines.
+
+This approach helped me keep my workflow organised and focus on delivering the most important features first.
+
+See examples of my Project on Github.
 
 # Testing
 To test the functionality of the program I used the following systems:
@@ -271,23 +284,70 @@ During the development, testing, and deployment of the project, I encountered a 
 - Syntax Errors: Common mistakes like capital letters, incorrect indents, misspellings, misplaced commas, and other minor syntax issues in Django views, models, and Bootstrap styling caused disruptions.
 - File Tree Problems: Authorisation folders were placed in the wrong directories, and there were duplicate templates/registration folders. The file structure was reorganised, and settings.py was updated for static files, including fixing STATIC_ROOT = BASE_DIR / 'staticfiles'.
 - Templates Not Rendering: Templates failed to load due to an incorrectly configured static root, which was corrected to ensure templates pulled through as intended.
+- Class names not pulling through css styling whilst using Bootstrap. I stripped it back to basics to debug and allow the Bootstrap styling to take control. For example with book_detail.html, as you can see from my commits to gibhub. (See example of issue below)
 - Deployment Bugs: Issues included missing whitenoise from the requirements.txt file and an incorrect database URL, both of which required updates to the configuration.
 - Review Functionality: The review feature wasn’t distinguishing between logged-in and logged-out users. Trial and error with Class-Based Views (CBVs) was used to refine the logic so the feature behaved as intended.
 - Search Bar Issues: The search bar stopped functioning because it wasn’t pulling books from the database. The issue was traced back to using an incorrect query parameter, which was fixed by changing the parameter to q.
 - Port 8000 Not Working: The application wouldn’t run on port 8000 without starting PostgreSQL first. The issue was resolved by ensuring docker start novelnest-postgres was executed before running the server.
 - Features Not Working: When logged in and searching for books, the "edit/delete" functionality stopped working because the conditions in views.py were not correctly implemented or were not being properly passed to the template context. This issue was resolved by reviewing and scaling back the styling, ensuring template inheritance was correctly structured, and verifying that all necessary imports and Django functions were included in the appropriate views, templates, and folders.
+
+![Issue Example Agile Framework](static/assets/images/readMe/issueagile.png)
+
+![Github Project / Agile Framework](static/assets/images/readMe/githubprojectagile.png)
   
 I continuously checked for bugs by running the server with python manage.py runserver 0.0.0.0:8000 and testing functionality such as creating new users, logging in and out, viewing, adding, and deleting books, and changing passwords. Each function was tested thoroughly during development and whenever I updated styling or layouts to ensure everything worked as expected.
 
 A recurring issue I faced was features breaking due to missing or incorrect imports of Django functions in views, templates, or other files. To address this, I now thoroughly check that all necessary imports and dependencies are correctly included in the appropriate places during development.
 
+## Styling Debug Example
+![With unused / error css clsss styling](static/assets/images/readMe/bookdetailstyling2.png)
+
+![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling3.png)
+
+![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling4.png)
+
+
 # Validator Testing
 
-PEP8 Test Returns Clear.
-
-![Pep8 test clear](https://github.com/Brogandaisy/tayorswift_erastour/blob/main/assets/images/pep8.errorclear.png)
+I tested
 
 # Deployment
+
+## Set Up My Project Locally:
+- I made sure my Django app was fully functional and working locally.
+- Installed necessary libraries like gunicorn, dj-database-url, and whitenoise and added them to requirements.txt.
+- Created a Procfile to specify how Heroku should run my app, e.g., web: gunicorn <my_project_name>.wsgi.
+
+## Prepare My App for Heroku:
+- Ensured heroku was installed on gitpod, using the command 'Install heroic brew tap heroku/brew && brew install heroku'
+- Configured STATIC_ROOT and integrated Whitenoise to manage static files in settings.py.
+- Updated DATABASES to use dj_database_url to parse Heroku’s DATABASE_URL.
+- Checked that ALLOWED_HOSTS included Heroku’s domain.
+
+## Create My Heroku App:
+- Used heroku to create the app and connect it to my Git repository. (app = novelnest) Ensuring it was set to EU.
+- Amend and add Config Vars, including SECRET_KEY, DATABASE_URL, HEROKU_POSTGRESQL_JADE_URL and PORT.
+
+## Set Up Environment Variables:
+- Set environment variables like SECRET_KEY using heroku config:set.
+- Temporarily disabled collectstatic with heroku config:set DISABLE_COLLECTSTATIC=1 to avoid deployment errors until my static files were sorted.
+
+## Push My Code to Heroku:
+- Deployed the app by running git push heroku main.
+
+## Migrate the Database:
+- After deployment, I applied database migrations on Heroku using heroku run python manage.py migrate.
+
+## Process when making changes & updating repoistory
+> git add . git commit -m "Describe your changes"
+
+> git push origin main
+
+> git push heroku main
+
+> heroku logs --tail --app your-app-name (This checks for any error messages)
+
+
 This project was deployed using Heroku. My code had been written using gitpod, and committed to github. I used the template repository from Code Institute.
 
 I followed the steps below to create the app display on Heroku:
