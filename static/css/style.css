@@ -84,20 +84,25 @@ h1 {
 
 /* General Navigation Styles */
 .nav {
-    display: flex; /* Align links horizontally */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
-    gap: 10px; /* Space between items */
-    list-style: none; /* Remove bullet points */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    list-style: none; 
     padding: 0;
     margin: 0;
     font-size: 1rem;
 }
 
 .nav .nav-link {
-    color: white; /* Set link color */
-    text-decoration: none; /* Remove underline */
+    color: white !important; 
+    text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
+
+.nav .nav-link:hover {
+    color: #ffcc00; /* Optional: Add a hover color */
+}
+
 
 .nav .nav-link:hover {
     color: #ffcc00; /* Highlight color on hover */
@@ -106,7 +111,6 @@ h1 {
 /* Second Row Navigation */
 .second-row {
     margin-top: 10px; /* Add spacing between rows */
-    font-size: 0.9rem; /* Slightly smaller font size */
 }
 
 /* Responsive Adjustments */
