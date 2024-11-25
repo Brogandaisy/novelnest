@@ -180,12 +180,6 @@ h1 {
 
 /* Add Book Page Styling */
 
-
-
-form {
-    
-}
-
 form button {
     width: 100px;
     margin-right: 10px;
@@ -218,6 +212,10 @@ footer {
 .site-footer a {
     color: #fff;
     text-decoration: none;
+}
+
+.copywrite p {
+    color: #d9d9d9;
 }
 
 .site-footer a:hover {

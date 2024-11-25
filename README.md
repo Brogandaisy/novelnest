@@ -1,10 +1,10 @@
 # NovelNest - Book Tracking App
 Project 4 - Brogan Carpenter
 
-[View Live Project](https://taylorswift-erastour-0edb3552fd4f.herokuapp.com/)
+[View Live Project](https://novelnest-a822349b1444.herokuapp.com/)
 
 1. [About the Project](#about-the-project)
-2. [Agile Framework](#agile-framework)
+2. [Agile Framework and Planning](#agile-framework-and-planning)
 3. [Features](#features)
 4. [Testing](#testing)
 5. [Bugs](#bugs)
@@ -31,12 +31,6 @@ The site is easy to use and looks good on both desktop and mobile.
 ## Why use NovelNest?
 NovelNest is built to make life easier for readers. It’s not just about tracking books – it’s about enjoying the process of reading, reflecting on what you’ve read, and keeping your library organised. Whether you’re tackling a massive to-read pile or keeping track of favourites, NovelNest is your go-to tool.
 
-## Wireframes / Initial Design
-![Homepage](static/assets/images/readMe/novelnestwireframe1.png)
-![Homepage](static/assets/images/readMe/novelnestwireframe2.png)
-![Book View](static/assets/images/readMe/novelnestwireframe3.png)
-
-
 ## NovelNest Visuals
 
 ![Homepage](static/assets/images/readMe/homepage.png)
@@ -47,22 +41,51 @@ NovelNest is built to make life easier for readers. It’s not just about tracki
 ![Search Books](static/assets/images/readMe/searchbooks.png)
 ![Footer](static/assets/images/readMe/footer.png)
 
-# Agile Framework
+# Agile Framework and Planning
+
+## User Goals / Project Goals
+User Goals
+- Discover and Add Books
+- Leave Reviews
+- Organise Books
+- Explore Recommendations
+- Access Anywhere
+
+Project Goals
+- Build a Functional Platform
+- Implement User Authentication
+- Optimise Performance
+- Test and Debug
+- Deploy a Live Application
+- Ensure Accessibility
 I used Agile frameworks to organise and manage my project efficiently. GitHub Projects was the main tool I used to implement this system.
 
-- I created a template in Issues to work from.
-- I created issues for tasks and assigned them labels such as "must-have," "should-have," and "could-have" to prioritise what needed to be done.
+## Agile Framework
+
+- I created a template in Issues to work from which were my User Stories and Acceptance Criterias for each task.
+- I created User Stories for tasks and assigned them labels such as "must-have," "should-have," and "could-have" to prioritise what needed to be done.
 - I then created 3 x columns called, 'Todo', 'In Progress' and 'Done'.
-- I created a workflow, which instructed that when an issue was created and connected to the NovelNest Project it would automatically go into the 'Todo' category. I then can edit the issues and move them along to 'In Progress' and 'Done'.
+- I created a workflow, which instructed that when an issue (User Story) was created and connected to the NovelNest Project it would automatically go into the 'Todo' category. I then can edit the issues and move them along to 'In Progress' and 'Done'.
 - To stay on track, I used milestones to set timeframes for larger sections of the project and work towards specific deadlines.
+
+Examples of my User Stories:
+- 
+- 
+- 
+- 
 
 This approach helped me keep my workflow organised and focus on delivering the most important features first.
 
-See examples of my Project on Github.
+See examples of my 'Project Plan' on Github.
 
-![Issue Example Agile Framework](static/assets/images/readMe/issueagile.png)
+![Issue/User Story Example Agile Framework](static/assets/images/readMe/issueagile.png)
 
 ![Github Project / Agile Framework](static/assets/images/readMe/githubprojectagile.png)
+
+## Wireframes / Initial Design
+![Homepage](static/assets/images/readMe/novelnestwireframe1.png)
+![Homepage](static/assets/images/readMe/novelnestwireframe2.png)
+![Book View](static/assets/images/readMe/novelnestwireframe3.png)
 
 # Features
 
@@ -252,6 +275,23 @@ Another example using Bootstrap utility classes like mt-3, p-4, or text-center f
             </p>            
         </div>
     </div>
+
+## File Storage and Database
+For NovelNest, I’ve set up static file storage and database management to ensure the app runs efficiently.
+
+- Static File Storage: I used Whitenoise to handle and serve all the static files, like CSS, JavaScript, and images, directly from the app. This means I don’t need an external service for static file hosting. 
+
+- Database: For the database, I integrated PostgreSQL. It’s hosted on Heroku, and I’ve configured it using the dj-database-url package. This connects my Django app to the database automatically using Heroku’s DATABASE_URL environment variable.
+
+## CRUD Functionality
+Authenticated users in NovelNest have full CRUD (Create, Read, Update, Delete) functionality for managing their books and reviews. For example:
+
+Create: Users can add new books or leave reviews on books.
+Read: Users can view details of books, including reviews and genres.
+Update: Users can edit books they’ve added or update their reading category.
+Delete: Users can remove books they’ve added.
+Only admin users have enhanced privileges, such as managing all user submissions and accessing the admin panel.
+
 
 ## Forms.py
 forms.py manages user input for NovelNest, by providing structured forms for specific tasks. Within my project, the ReviewForm is linked directly to the Review model, allowing users to submit and save reviews with customised styling for better usability. The SearchForm, meanwhile, provides a clean and intuitive interface for users to search for books, with validation and Bootstrap styling for a polished user experience.
