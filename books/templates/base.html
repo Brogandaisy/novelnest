@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
     <header>
-        <!-- First Row of Navigation -->
-        <ul class="nav justify-content-center mb-2">
-            <li class="nav-item">
+        <ul class="nav justify-content-center">
+            <li class="nav-item"></li>
                 <a href="{% url 'homepage' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'book_list' %}" class="nav-link">Books</a>
+                <a href="{% url 'book_list' %}" class="nav-link">Book List</a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'book_search' %}" class="nav-link">Search</a>
@@ -26,32 +26,27 @@
                 <a href="{% url 'about' %}" class="nav-link">About</a>
             </li>
         </ul>
-    
-        <!-- Second Row of Navigation -->
-        <ul class="nav justify-content-center nav-second-row">
-            <li class="nav-item">
-                <a href="{% url 'book_add' %}" class="nav-link small">Add Book</a>
+            
+        <ul class="nav justify-content-center">
+            <li class="nav-item"></li>
+                <a href="{% url 'book_add' %}" class="nav-link">Add a Book</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'account' %}" class="nav-link small">Account</a>
+                <a href="{% url 'account' %}" class="nav-link">My Account</a>
             </li>
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="nav-link small btn-link" style="background:none; border:none; padding:0; font:inherit;">Logout</button>
-                    </form>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a href="{% url 'login' %}" class="nav-link small">Login</a>
-                </li>
-            {% endif %}
+            <li>
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer; padding:0; font: inherit;"><i>Log Ou</i>t</button>
+                </form>
+            </li>
+                {% else %}
+                <li><a href="{% url 'login' %}"><i>Login</i></a></li>
+                {% endif %}
         </ul>
     </header>
-    
 
-    
     <main>
         {% block content %}{% endblock %}
     </main>

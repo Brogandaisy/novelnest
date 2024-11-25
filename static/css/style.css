@@ -82,14 +82,6 @@ h1 {
     text-align: center;
 }
 
-.nav-second-row {
-    font-size: 0.85rem;
-    margin-top: -5px;
-}
-.nav a, .nav button {
-    text-decoration: none;
-}
-
 /* HomePage Styling */
 
 .welcome h2 {
