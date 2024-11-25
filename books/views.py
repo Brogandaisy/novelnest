@@ -21,12 +21,11 @@ from django.db.models import Count
 from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import TemplateView
 
-
-
-
-# Create your views here.
-
 def homepage(request):
+    """
+    Displays the homepage with recent and most-reviewed books.
+
+    """
     recent_books = Book.objects.order_by('-id')[:6]  # Get the 6 most recent books
     most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
     return render(request, 'books/homepage.html', {
@@ -34,10 +33,69 @@ def homepage(request):
         'most_reviewed_books': most_reviewed_books,
     })
 
+def signup(request):
+    """
+    Create a new account for NovelNest. 
+
+    Create a username and password.
+    """
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Automatically log in the user after signup
+            return redirect("book_list")
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})
 
 
-# Book List - This displays the list of books - User must be logged in
+class CustomPasswordChangeView(PasswordChangeView):
+    """
+    When logged in users can change their password with a custom form.
+    """
+    template_name = "registration/password_change_form.html"  # Ensure this file exists
+    success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name="dispatch")
+class AdminOnlyView(ListView):
+    """
+    Admin view for superusers or staff users. They can view all users and uploaded books.
+
+    Superusers can edit and delete users and books.
+    """
+    model = Book
+    template_name = "books/admin_books.html"  # Admin-only template
+
+class BookCreateView(LoginRequiredMixin, CreateView):
+    """
+    Upload a new book to their account.
+    User can add information including author, genre and category.
+    """
+    model = Book
+    template_name = "books/book_form.html"
+    fields = ["title", "author", "genre", "status"]
+    success_url = reverse_lazy(
+        "book_list"
+    )  # Redirects to the book list view/page after adding a book
+
+    def form_valid(self, form):
+        form.instance.added_by = self.request.user  # Connects the user to the book
+        messages.success(
+            self.request, "Book added successfully!"
+        )  # Displays book added success message
+        return super().form_valid(form)
+
 class BookListView(LoginRequiredMixin, ListView):
+    """
+    This displays the list of books which have been uploaded.
+    Will only display for a user logged in.
+    If requested when logged out, it will display login page.
+    Displays the uploaded books in the chosen categories.
+    Uses 'count' to display the total number of books in each category.
+    """
     model = Book
     template_name = "books/book_list.html"
 
@@ -65,11 +123,16 @@ class BookListView(LoginRequiredMixin, ListView):
 
         return context
 
-
-# Detailed Book View - This shows further details of the book
-from django.utils.timezone import now
-
 class BookDetailView(DetailView):
+    """
+    Displays the uploaded books information, including author, genre and title.
+    If the user is logged in they will get the option to edit or delete the book.
+    If the user is not logged in, it will not display these options.
+
+    Reviews will display if they have been uploaded. 
+    The logged in user will only be able to leave a review of the book IF the book is in 'Completed'
+    If a non-logged in user is viewing the book, they can leave a review but do the tick box to say 'they've read the book'
+    """
     model = Book
     template_name = "books/book_detail.html"
 
@@ -117,28 +180,10 @@ class BookDetailView(DetailView):
             return self.get(request, *args, **kwargs)
 
 
-
-
-
-# Creating a new book to the users list of books - User must be logged in to add a book
-class BookCreateView(LoginRequiredMixin, CreateView):
-    model = Book
-    template_name = "books/book_form.html"
-    fields = ["title", "author", "genre", "status"]
-    success_url = reverse_lazy(
-        "book_list"
-    )  # Redirects to the book list view/page after adding a book
-
-    def form_valid(self, form):
-        form.instance.added_by = self.request.user  # Connects the user to the book
-        messages.success(
-            self.request, "Book added successfully!"
-        )  # Displays book added success message
-        return super().form_valid(form)
-
-
-# Updating a book. Allowing user to edit book details - User must be logged in
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Users when logged in can edit their uploaded book, including author, title and genre.
+    """
     model = Book
     template_name = "books/book_form.html"
     fields = ["title", "author", "genre", "status"]
@@ -153,9 +198,10 @@ class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         book = self.get_object()
         return self.request.user == book.added_by or self.request.user.is_superuser
 
-
-# Allowing users to delete the book that they have uploaded - user must be logg in
 class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Users, when logged in can delete a book they've uploaded.
+    """
     model = Book
     template_name = "books/book_confirm_delete.html"
     success_url = reverse_lazy("book_list")
@@ -170,35 +216,12 @@ class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         book = self.get_object()
         return self.request.user == book.added_by or self.request.user.is_superuser
 
-
-def signup(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)  # Automatically log in the user after signup
-            return redirect("book_list")
-    else:
-        form = UserCreationForm()
-    return render(request, "registration/signup.html", {"form": form})
-
-#Password change page
-
-class CustomPasswordChangeView(PasswordChangeView):
-    template_name = "registration/password_change_form.html"  # Ensure this file exists
-    success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
-
-    # Admin-Only View
-
-
-@method_decorator(user_passes_test(lambda u: u.is_superuser), name="dispatch")
-class AdminOnlyView(ListView):
-    model = Book
-    template_name = "books/admin_books.html"  # Admin-only template
-
-# Book Search
-
 class BookSearchView(ListView):
+    """
+    Users, logged in or logged out, can search for books on the database.
+
+    Search authors and titles.
+    """
     model = Book
     template_name = "books/book_search.html"
     context_object_name = "search_results"
@@ -211,7 +234,6 @@ class BookSearchView(ListView):
             )
         return Book.objects.none()  # Return empty QuerySet if no query
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get("q", "")
@@ -222,8 +244,6 @@ class BookSearchView(ListView):
             review_count=Count("reviews")
         ).order_by("-review_count")[:3]
         return context
-
-
 
 def about(request):
     return render(request, 'books/about.html')
