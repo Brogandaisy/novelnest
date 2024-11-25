@@ -385,7 +385,7 @@ First Lighthouse Test / Mobile
 Second Lighthouse Test / Mobile
 Changes made:
 - Lazy Load for images
-- Convert images to webp
+- Convert images to webp using Squoosh
 - Remove unwanted css
 ![Second Lighthouse Test](static/assets/images/readMe/lighthousemobilehomepage.png)
 
@@ -458,11 +458,12 @@ A recurring issue I faced was features breaking due to missing or incorrect impo
 # References
 I used the following resources to complete this project.
 
-- W3Schools
-- Bootstrap
+- W3Schools / styling and html/css support / testing
+- Bootstrap / styling / grid layout / forms
 - Code Institute's "I think therefore I blog" Walkthrough project
 - Django 5 by Example Book - Huge help with building the project django code, especiall with authorisation settings, including account set up, and  password reset. 
 - Chat GPT for error message reading - when using command heroku logs --tail --app novelnest and general problem troubleshooting help
+- Squoosh - compress images to webp
 - Images sourced royalty free from Canva.com
 - Name, made up and gained inspiration from other websites including GoodReads.
 
