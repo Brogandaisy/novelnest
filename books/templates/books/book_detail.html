@@ -35,7 +35,7 @@
             {% for review in reviews %}
                 <h3>{{ review.user }}:</h3>
                 <p class="review-body"> {{ review.content }} <br>
-                <small>Posted on {{ review.created_at | naturaltime }}</small>
+                <small>Posted {{ review.created_at | naturaltime }}</small>
                 </p>
             {% endfor %}
         {% else %}

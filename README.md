@@ -32,13 +32,19 @@ The site is easy to use and looks good on both desktop and mobile.
 NovelNest is built to make life easier for readers. It’s not just about tracking books – it’s about enjoying the process of reading, reflecting on what you’ve read, and keeping your library organised. Whether you’re tackling a massive to-read pile or keeping track of favourites, NovelNest is your go-to tool.
 
 ## NovelNest Visuals
-
+Homepage View
 ![Homepage](static/assets/images/readMe/homepage.png)
+Login as a User
 ![Log In Page](static/assets/images/readMe/login.png)
+Viewing your personal Book List
 ![Book List](static/assets/images/readMe/booklist.png)
+Add a Book to your List
 ![Add a Book](static/assets/images/readMe/addbook.png)
+Book Details
 ![Book Detail Page](static/assets/images/readMe/bookdetail.png)
+Search for Books
 ![Search Books](static/assets/images/readMe/searchbooks.png)
+Footer Styling
 ![Footer](static/assets/images/readMe/footer.png)
 
 # Agile Framework and Planning

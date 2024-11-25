@@ -82,6 +82,14 @@ h1 {
     text-align: center;
 }
 
+.nav-second-row {
+    font-size: 0.85rem;
+    margin-top: -5px;
+}
+.nav a, .nav button {
+    text-decoration: none;
+}
+
 /* HomePage Styling */
 
 .welcome h2 {
@@ -139,7 +147,9 @@ h1 {
 
 /* Book Detail Page Styling */
 
-
+.review-body {
+    white-space: pre-wrap;
+}
 
 .reviews-section {
     margin-top: 40px;
@@ -212,10 +222,6 @@ footer {
 .site-footer a {
     color: #fff;
     text-decoration: none;
-}
-
-.copywrite p {
-    color: #fff;
 }
 
 .site-footer a:hover {
