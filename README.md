@@ -380,9 +380,20 @@ I used Lighthouse testing to evaluate the performance, accessibility, and best p
 
 My first Lighthouse test returned a less than average score. With suggestions to resize and compress images and remove any unwanted css. I then made these changes and the score improved.
 
+First Lighthouse Test / Mobile 
 ![First Lighthouse Test](static/assets/images/readMe/lighthouse1.png)
+Second Lighthouse Test / Mobile
+Changes made:
+- Lazy Load for images
+- Convert images to webp
+- Remove unwanted css
+![Second Lighthouse Test](static/assets/images/readMe/lighthousemobilehomepage.png)
 
-
+Further Lighthouse Tests:
+Desktop Homepage
+![First Lighthouse Test](static/assets/images/readMe/lighthousedesktophomepage.png)
+Mobile Book List
+![First Lighthouse Test](static/assets/images/readMe/lighthousemogilebooklist.png)
 
 # Bugs
 During the development, testing, and deployment of the project, I encountered a range of bugs that required careful troubleshooting and debugging. Here’s a summary of some of the key issues:
@@ -449,6 +460,10 @@ I used the following resources to complete this project.
 
 - W3Schools
 - Bootstrap
-- Chat GPT for error message reading 
+- Code Institute's "I think therefore I blog" Walkthrough project
+- Django 5 by Example Book - Huge help with building the project django code, especiall with authorisation settings, including account set up, and  password reset. 
+- Chat GPT for error message reading - when using command heroku logs --tail --app novelnest and general problem troubleshooting help
+- Images sourced royalty free from Canva.com
+- Name, made up and gained inspiration from other websites including GoodReads.
 
 Author - Brogan Carpenter

@@ -3,69 +3,40 @@
     --bs-nav-link-hover-color: #ffcc00;
 }
 
-/* Base Template Styling */
+
+/* Base Template Styling    */
+
 body {
     font-family: 'Playfair Display', serif;
     margin: 0;
     padding: 0;
-    background-color: #d9d9d9;
+    background-color: #d9d9d9; /* Light grey background for the whole app */
 }
 
 header {
-    background-color: #333;
+    background-color: #333; /* Dark background for the header */
     color: white;
-    padding: 40px 20px;
+    padding: 40px 20px; /* Spacing inside the header */
 }
 
 header ul {
     list-style: none;
-    display: flex;
-    gap: 20px;
+    display: flex; /* Align navigation items horizontally */
+    gap: 20px; /* Space between navigation items */
     padding: 0;
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.btnMain {
-    background-color: #fab400;  
-}
-
-.btnSecond {
-    background-color: #333; 
-    color: #fff;
-}
-
-.container {
-    max-width: 1200px;
-    padding: 20px;
-}
-
-.text-center {
-    color: #555;
-}
 
 /* General Navigation Styles */
+
 .nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; 
-    list-style: none; 
+    display: flex; /* Align links horizontally */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 10px; /* Space between items */
+    list-style: none; /* Remove bullet points */
     padding: 0;
     margin: 0;
-    font-size: 2rem;
+    font-size: 2rem; /* Larger font for navigation links */
 }
 
 header ul li a,
@@ -74,13 +45,13 @@ header ul li a,
     color: white; /* Consistent link color */
     text-decoration: none; /* No underline */
     transition: color 0.2s ease-in-out; /* Smooth hover transition */
-    font-size: x-large;
+    font-size: x-large; /* Large font size for nav links */
 }
 
 header ul li a:hover,
 .nav a:hover,
 .nav .nav-link:hover {
-    color: #ffcc00; /* Consistent hover color */
+    color: #ffcc00; /* Gold hover color */
 }
 
 /* Second Row Navigation */
@@ -88,7 +59,9 @@ header ul li a:hover,
     margin-top: 10px; /* Add spacing between rows */
 }
 
-/* Responsive Adjustments */
+
+/* Responsive Adjustments    */
+
 @media (max-width: 768px) {
     .nav {
         justify-content: center;
@@ -97,10 +70,10 @@ header ul li a:hover,
 }
 
 
-/* HomePage Styling */
+/* HomePage Styling          */
 
 .welcome h2 {
-    text-align: center;
+    text-align: center; /* Center welcome message */
 }
 
 .welcome p {
@@ -111,11 +84,11 @@ header ul li a:hover,
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-  }
+    width: 100%; /* Makes images fill the width of their container */
+}
 
 .bookCards {
-    padding-top: 50px;
+    padding-top: 50px; /* Adds space above the book cards section */
     padding-bottom: 20px;
 }
 
@@ -124,13 +97,13 @@ header ul li a:hover,
 }
 
 .img-fluid {
-    border-radius: 8px; 
+    border-radius: 8px; /* Rounded corners for images */
     margin-bottom: 15px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect for images */
 }
 
 .img-fluid:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slightly enlarge images on hover */
 }
 
 .pageWelcome {
@@ -138,35 +111,39 @@ header ul li a:hover,
     text-align: center;
 }
 
-/* Book List Page Styling */
+
+/* Book List Page Styling    */
 
 .bookListHeading h2 {
-    font-weight: 900;
+    font-weight: 900; /* Bold heading for the book list */
 }
 
 .bookList {
     list-style: none;
-    line-height: 40px;
+    line-height: 40px; /* Adds spacing between book list items */
 }
 
 .bookList li {
-    font-size: large;
+    font-size: large; /* Larger font for book list items */
 }
 
 .searchBar {
     padding: 20px;
 }
 
-/* Book Detail Page Styling */
+
+/* Book Detail Page Styling  */
 
 .review-body {
-    white-space: pre-wrap;
+    white-space: pre-wrap; /* Preserve spacing and line breaks in review content */
 }
 
 .reviews-section {
-    margin-top: 40px;
+    margin-top: 40px; /* Add space above the reviews section */
 }
-/* Book Search Page Styling */
+
+
+/* Book Search Page Styling  */
 
 .bookSearch {
     padding-top: 20px;
@@ -174,8 +151,8 @@ header ul li a:hover,
 }
 
 .searchResults ul {
-    list-style: none;
-    gap: 20px;
+    list-style: none; /* Remove bullet points for search results */
+    gap: 20px; /* Space between results */
     padding: 0;
 }
 
@@ -187,23 +164,20 @@ header ul li a:hover,
     padding: 30px;
 }
 
-/* Login Page Styling */
 
-
-
-/* Signup Page Styling */
+/* Account / Login / Sign up Page Styling       */
 
 .accountContainer {
     margin: 10px;
     padding-bottom: 20px;
-    padding: 40px;
+    padding: 40px; /* Adds padding inside form container */
 }
 
 
-/* Add Book Page Styling */
+/* Add Book Page Styling     */
 
 form button {
-    width: 100px;
+    width: 100px; /* Fixed button width */
     margin-right: 10px;
 }
 
@@ -212,11 +186,10 @@ form a {
     color: #fff;
 }
 
-
-/* Footer Styling */
+/* Footer Styling            */
 
 footer {
-    background-color: #fab400;
+    background-color: #fab400; /* Yellow footer background */
     color: white;
     text-align: center;
     padding: 5px 0;
@@ -225,10 +198,10 @@ footer {
 }
 
 .site-footer {
-    background-color: #333;
+    background-color: #333; /* Dark footer background */
     color: #fff;
     padding: 20px 0;
-    font-size: 14px;
+    font-size: 14px; /* Smaller footer font */
 }
 
 .site-footer a {
@@ -237,7 +210,7 @@ footer {
 }
 
 .site-footer a:hover {
-    color: #f0a500;
+    color: #f0a400; /* Yellow hover color for footer links */
     text-decoration: underline;
 }
 
@@ -252,35 +225,34 @@ footer {
 
 .site-footer .social-links {
     list-style: none;
-    display: flex;
+    display: flex; /* Align social links horizontally */
     justify-content: center;
     padding: 0;
 }
 
 .site-footer .social-links li a {
-    background-color: #555;
+    background-color: #555; /* Grey background for social icons */
     color: #fff;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 5px; /* Rounded corners */
 }
 
 .site-footer .social-links li a:hover {
-    background-color: #fab400;
-    color: #333;
+    background-color: #fab400; /* Yellow background on hover */
+    color: #333; /* Dark text color on hover */
 }
 
 .site-footer .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center the footer content */
 }
 
 .site-footer .row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow footer content to wrap on smaller screens */
     justify-content: space-between;
 }
 
 .text-center {
     text-align: center;
 }
-
