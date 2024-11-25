@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <div class="container">
@@ -30,15 +31,16 @@
     <div class="reviews-section row">
         <div class="col-12 text-left">
         <h2>Reviews</h2>
-        {% if reviews %}
-            <ul>
-                {% for review in reviews %}
-                    <li>
-                        <strong>{{ review.user }}:</strong> {{ review.content }} <br>
-                        <small>Posted on {{ review.created_at }}</small>
-                    </li>
-                {% endfor %}
-            </ul>
+        {% if reviews %} 
+            {% for review in reviews %}
+            <h3>{{ review.user }}:</h3>
+                <p class="review-body"> {{ review.content }} <br>
+                <small>Posted on {{ review.created_at | naturaltime  }}</small>
+            </p>
+            {% endfor %}   
+        {% else %}
+            <p>No reviews yet. Be the first to review this book!</p>
+        {% endif %}
         {% else %}
             <p>No reviews yet. Be the first to review this book!</p>
         {% endif %}
