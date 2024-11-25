@@ -1,7 +1,11 @@
-/* Base Template Styling */
+:root {
+    --bs-nav-link-color: white;
+    --bs-nav-link-hover-color: #ffcc00;
+}
 
+/* Base Template Styling */
 body {
-    font-family: Playfair Display, serif;
+    font-family: 'Playfair Display', serif;
     margin: 0;
     padding: 0;
     background-color: #d9d9d9;
@@ -13,30 +17,11 @@ header {
     padding: 40px 20px;
 }
 
-header h2 {
-    font-size: medium;
-}
-
 header ul {
     list-style: none;
     display: flex;
     gap: 20px;
     padding: 0;
-}
-
-header ul li {
-    display: inline;
-    font-size: x-large;
-}
-
-header ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-}
-
-header ul li a:hover {
-    text-decoration: underline;
 }
 
 h1 {
@@ -52,11 +37,6 @@ h1 {
 
 .card:hover {
     transform: translateY(-5px);
-}
-
-.btn-block {
-    width: 100%;
-    margin: 10px 0;
 }
 
 .btnMain {
@@ -77,10 +57,44 @@ h1 {
     color: #555;
 }
 
-.pageWelcome {
-    padding-top: 20px;
-    text-align: center;
+/* General Navigation Styles */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
 }
+
+header ul li a,
+.nav a,
+.nav .nav-link {
+    color: white; /* Consistent link color */
+    text-decoration: none; /* No underline */
+    transition: color 0.2s ease-in-out; /* Smooth hover transition */
+}
+
+header ul li a:hover,
+.nav a:hover,
+.nav .nav-link:hover {
+    color: #ffcc00; /* Consistent hover color */
+}
+
+/* Second Row Navigation */
+.second-row {
+    margin-top: 10px; /* Add spacing between rows */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav {
+        justify-content: center;
+        font-size: 0.5rem; /* Reduce font size on smaller screens */
+    }
+}
+
 
 /* HomePage Styling */
 
@@ -139,11 +153,13 @@ h1 {
 
 /* Book Detail Page Styling */
 
-
-.bookDetailContainer {
-    padding: 100px;
+.review-body {
+    white-space: pre-wrap;
 }
 
+.reviews-section {
+    margin-top: 40px;
+}
 /* Book Search Page Styling */
 
 .bookSearch {
@@ -179,12 +195,6 @@ h1 {
 
 
 /* Add Book Page Styling */
-
-
-
-form {
-    
-}
 
 form button {
     width: 100px;
