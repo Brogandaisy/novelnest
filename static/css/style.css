@@ -82,6 +82,43 @@ h1 {
     text-align: center;
 }
 
+/* General Navigation Styles */
+.nav {
+    display: flex; /* Align links horizontally */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 10px; /* Space between items */
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.nav .nav-link {
+    color: white; /* Set link color */
+    text-decoration: none; /* Remove underline */
+    padding: 5px 10px;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav .nav-link:hover {
+    color: #ffcc00; /* Highlight color on hover */
+}
+
+/* Second Row Navigation */
+.second-row {
+    margin-top: 10px; /* Add spacing between rows */
+    font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav {
+        justify-content: center;
+        font-size: 0.8rem; /* Reduce font size on smaller screens */
+    }
+}
+
+
 /* HomePage Styling */
 
 .welcome h2 {

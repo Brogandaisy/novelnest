@@ -12,8 +12,9 @@
 <body>
 
     <header>
+        <!-- First Row of Navigation -->
         <ul class="nav justify-content-center">
-            <li class="nav-item"></li>
+            <li class="nav-item">
                 <a href="{% url 'homepage' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
@@ -26,26 +27,30 @@
                 <a href="{% url 'about' %}" class="nav-link">About</a>
             </li>
         </ul>
-            
-        <ul class="nav justify-content-center">
-            <li class="nav-item"></li>
+    
+        <!-- Second Row of Navigation -->
+        <ul class="nav justify-content-center second-row">
+            <li class="nav-item">
                 <a href="{% url 'book_add' %}" class="nav-link">Add a Book</a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'account' %}" class="nav-link">My Account</a>
             </li>
             {% if user.is_authenticated %}
-            <li>
-                <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer; padding:0; font: inherit;"><i>Log Ou</i>t</button>
-                </form>
-            </li>
-                {% else %}
-                <li><a href="{% url 'login' %}"><i>Login</i></a></li>
-                {% endif %}
+                <li class="nav-item">
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link btn-link" style="background:none; border:none; padding:0; font:inherit;">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link">Login</a>
+                </li>
+            {% endif %}
         </ul>
     </header>
+    
 
     <main>
         {% block content %}{% endblock %}
