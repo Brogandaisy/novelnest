@@ -74,7 +74,7 @@ header ul li a,
     color: white; /* Consistent link color */
     text-decoration: none; /* No underline */
     transition: color 0.2s ease-in-out; /* Smooth hover transition */
-    font-size: medium;
+    font-size: x-large;
 }
 
 header ul li a:hover,
@@ -92,7 +92,7 @@ header ul li a:hover,
 @media (max-width: 768px) {
     .nav {
         justify-content: center;
-        font-size: 1.1rem; /* Reduce font size on smaller screens */
+        font-size: medium; /* Reduce font size on smaller screens */
     }
 }
 

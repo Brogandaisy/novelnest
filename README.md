@@ -75,10 +75,18 @@ I used Agile frameworks to organise and manage my project efficiently. GitHub Pr
 - To stay on track, I used milestones to set timeframes for larger sections of the project and work towards specific deadlines.
 
 Examples of my User Stories:
-- 
-- 
-- 
-- 
+- View Grouped Categories (could-have)
+- Viewing Book Lists (must-have)
+- Moving Books Between Categories (should-have)
+- Adding Books to the App - (must-have)
+
+Viewing Book Lists (must-have)
+As an avid reader, I want to view my lists by category (Want to Read, Currently Reading, Read) so that I can quickly see my progress and prioritise my next book.
+
+Acceptance Criteria:
+
+- Users can view their books organised by category on a dashboard or home screen.
+- Categories display an accurate count of books within them.
 
 This approach helped me keep my workflow organised and focus on delivering the most important features first.
 
@@ -439,7 +447,8 @@ A recurring issue I faced was features breaking due to missing or incorrect impo
 # References
 I used the following resources to complete this project.
 
-- W3Schools for pandas library explanation, and how to include an enumerate function, and how to round the age to the nearest whole number
-- Love Sandwiches walk through project for deployment, and googlesheet import/connection
+- W3Schools
+- Bootstrap
+- Chat GPT for error message reading 
 
 Author - Brogan Carpenter

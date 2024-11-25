@@ -12,4 +12,23 @@
         <a href="{% url 'password_change' %}" class="btn btnMain">Change Password</a>
     </div>
 </div>
+
+<!-- Navigation Buttons -->
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'book_add' %}">
+            <img src="{% static 'assets/images/addanewbook.webp' %}" alt="Add a New Book" class="img-fluid" loading="lazy">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_search' %}">
+            <img src="{% static 'assets/images/searchbooks.webp' %}" alt="Search Books" class="img-fluid" loading="lazy">
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}">
+            <img src="{% static 'assets/images/viewyourbook.webp' %}" alt="View Your Books" class="img-fluid" loading="lazy">
+        </a>
+    </div>
+    
 {% endblock %}
