@@ -28,22 +28,22 @@
     </div>
 
     <!-- Reviews Section -->
-    <div class="reviews-section row">
-        <div class="col-12 text-left">
+<div class="reviews-section row">
+    <div class="col-12 text-left">
         <h2>Reviews</h2>
         {% if reviews %} 
             {% for review in reviews %}
-            <h3>{{ review.user }}:</h3>
+                <h3>{{ review.user }}:</h3>
                 <p class="review-body"> {{ review.content }} <br>
-                <small>Posted on {{ review.created_at | naturaltime  }}</small>
-            </p>
-            {% endfor %}   
+                <small>Posted on {{ review.created_at | naturaltime }}</small>
+                </p>
+            {% endfor %}
         {% else %}
             <p>No reviews yet. Be the first to review this book!</p>
         {% endif %}
-        {% else %}
-            <p>No reviews yet. Be the first to review this book!</p>
-        {% endif %}
+    </div>
+</div>
+
     
         {% if review_form %}
         <h2>Leave a Review</h2>
