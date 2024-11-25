@@ -5,11 +5,15 @@
 
 {% block content %}
 <div class="accountContainer">
+    <div class="row justify-content-center">
+        <div class="col-md-4 p-4 shadow rounded bg-light">
     <h1>Account Details</h1>
     <p><strong>Username:</strong> {{ user.username }}</p>
 
     <div class="mt-4">
         <a href="{% url 'password_change' %}" class="btn btnMain">Change Password</a>
+    </div>
+        </div>
     </div>
 </div>
 

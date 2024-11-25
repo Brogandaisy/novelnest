@@ -8,9 +8,8 @@ Project 4 - Brogan Carpenter
 3. [Features](#features)
 4. [Testing](#testing)
 5. [Bugs](#bugs)
-6. [Validator Testing](#validator-testing)
-7. [Deployment](#deployment)
-8. [References](#references)
+6. [Deployment](#deployment)
+7. [References](#references)
 
 # About the Project
 
@@ -462,9 +461,13 @@ I used the following resources to complete this project.
 - Bootstrap / styling / grid layout / forms
 - Code Institute's "I think therefore I blog" Walkthrough project
 - Django 5 by Example Book - Huge help with building the project django code, especiall with authorisation settings, including account set up, and  password reset. 
-- Chat GPT for error message reading - when using command heroku logs --tail --app novelnest and general problem troubleshooting help
 - Squoosh - compress images to webp
 - Images sourced royalty free from Canva.com
 - Name, made up and gained inspiration from other websites including GoodReads.
+
+# Future Features
+In the future I would like to add the following features to help improve UX:
+- Forgot Password - Add a forgotten password link, allowing users to reset their password.
+- Users able to edit/delete their reviews and leave comments.
 
 Author - Brogan Carpenter

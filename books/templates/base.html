@@ -42,7 +42,7 @@
                 <li class="nav-item">
                     <form method="post" action="{% url 'logout' %}" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="nav-link btn-link" style="background:none; border:none; padding:0; font:inherit; display:inline;">Logout</button>
+                        <button type="submit" class="nav-link btn-link" style="background:none; border:none; padding:0; font:inherit; display:inline; font-size: x-large;">Logout</button>
                     </form>
                 </li>
             {% else %}
@@ -70,9 +70,9 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="{% url 'homepage' %}">Home</a></li>
-                        <li><a href="{% url 'book_list' %}">Books</a></li>
-                        <li><a href="{% url 'book_search' %}">Search</a></li>
-                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'book_list' %}">Your Book List</a></li>
+                        <li><a href="{% url 'book_search' %}">Search Books</a></li>
+                        <li><a href="{% url 'about' %}">About NovelNest</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
