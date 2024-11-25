@@ -65,7 +65,7 @@ h1 {
     list-style: none; 
     padding: 0;
     margin: 0;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 header ul li a,
@@ -74,6 +74,7 @@ header ul li a,
     color: white; /* Consistent link color */
     text-decoration: none; /* No underline */
     transition: color 0.2s ease-in-out; /* Smooth hover transition */
+    font-size: medium;
 }
 
 header ul li a:hover,
@@ -91,7 +92,7 @@ header ul li a:hover,
 @media (max-width: 768px) {
     .nav {
         justify-content: center;
-        font-size: 0.5rem; /* Reduce font size on smaller screens */
+        font-size: 1.1rem; /* Reduce font size on smaller screens */
     }
 }
 
@@ -130,6 +131,11 @@ header ul li a:hover,
 
 .img-fluid:hover {
     transform: scale(1.05);
+}
+
+.pageWelcome {
+    padding-top: 20px;
+    text-align: center;
 }
 
 /* Book List Page Styling */
