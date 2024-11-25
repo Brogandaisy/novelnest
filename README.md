@@ -368,6 +368,8 @@ My first Lighthouse test returned a less than average score. With suggestions to
 
 ![First Lighthouse Test](static/assets/images/readMe/lighthouse1.png)
 
+
+
 # Bugs
 During the development, testing, and deployment of the project, I encountered a range of bugs that required careful troubleshooting and debugging. Here’s a summary of some of the key issues:
 
@@ -391,11 +393,6 @@ A recurring issue I faced was features breaking due to missing or incorrect impo
 ![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling3.PNG)
 
 ![Correct Bootstrap Styling](static/assets/images/readMe/bookdetailstyling4.PNG)
-
-
-# Validator Testing
-
-I tested
 
 # Deployment
 
