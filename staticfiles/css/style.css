@@ -26,6 +26,19 @@ header ul {
     padding: 0;
 }
 
+.btnMain {
+    background-color: #fab400;  
+}
+
+.btnSecond {
+    background-color: #333; 
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
 
 /* General Navigation Styles */
 
