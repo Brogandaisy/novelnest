@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "novelnest",
     "books",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
