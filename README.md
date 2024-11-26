@@ -12,7 +12,7 @@ Project 4 - Brogan Carpenter
 7. [References](#references)
 
 NovelNest
-![NovelNest](static/assets/images/readMe/novelestmultidisplay.png)
+![NovelNest](static/assets/images/readMe/novelnestmultidisplay.png)
 
 # About the Project
 
