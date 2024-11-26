@@ -11,6 +11,9 @@ Project 4 - Brogan Carpenter
 6. [Deployment](#deployment)
 7. [References](#references)
 
+NovelNest
+![NovelNest](static/assets/images/readMe/novelestmultidisplay.png)
+
 # About the Project
 
 NovelNest is a website for book lovers who want to keep track of their reading. It’s designed to make organising your books easy, whether it’s ones you want to read, are currently reading, or have already finished. You can also add your own reviews and update them as you go.
@@ -223,8 +226,8 @@ The login feature uses Django’s authentication to securely validate users. The
 The password change feature uses Django’s built-in PasswordChangeView, which allows users to securely update their passwords. I’ve customised this functionality by creating a CustomPasswordChangeView that uses a personalised form template (password_change_form.html) and a confirmation page (password_change_done.html). Both templates extend base.html to match the styling and layout of the rest of the website, providing a consistent and user-friendly experience for anyone updating their password.
 
           class CustomPasswordChangeView(PasswordChangeView):
-              template_name = "registration/password_change_form.html"  # Ensure this file exists
-              success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
+              template_name = "registration/password_change_form.html" 
+              success_url = reverse_lazy('password-change/done') 
 
 ## Upload a book with details (author, title, and genre)
 Users can add books via a Django form, including title, author, genre, and status. The Book model stores this data, categorises books, and links them to the user who added them. Bootstrap is used for form styling to ensure responsive layout.
@@ -241,7 +244,7 @@ Users can add books via a Django form, including title, author, genre, and statu
         form.instance.added_by = self.request.user  # Connects the user to the book
         messages.success(
             self.request, "Book added successfully!"
-        )  # Displays book added success message
+        ) 
         return super().form_valid(form)
 
 ![Upload a Book](static/assets/images/readMe/addabooknovelnest.png)
@@ -250,15 +253,17 @@ Users can add books via a Django form, including title, author, genre, and statu
 A dropdown menu, lets users assign books to categories. The selection updates dynamically in the database by using the Book model.
 
 Book model:
+
         class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    status_choices = [
-        ("Wishlist", "Wish List"),
-        ("Reading", "Reading"),
-        ("Completed", "Completed"),
-    ]
-    status = models.CharField(max_length=10, choices=status_choices, default="to_read")
+            title = models.CharField(max_length=200)
+            author = models.CharField(max_length=100)
+            status_choices = [
+                ("Wishlist", "Wish List"),
+                ("Reading", "Reading"),
+                ("Completed", "Completed"),
+            ]
+        
+        status = models.CharField(max_length=10, choices=status_choices, default="to_read")
 
 ![Select a Category](static/assets/images/readMe/selectacategorynorvelnest.png)
 
@@ -315,10 +320,9 @@ Individual book pages dynamically pull data using Django views. It also includes
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["reviews"] = self.object.reviews.all()  # Fetch all reviews for the book
+        context["reviews"] = self.object.reviews.all()
         
         if self.request.user.is_authenticated:
-            # Only show the review form to logged-in users
             if self.object.status == "Completed" or self.object.added_by != self.request.user:
                 context["review_form"] = ReviewForm()
         return context
@@ -334,13 +338,14 @@ If the user views a book which they did not upload to their account, they can le
 ## Dynamic data: Recently uploaded books and most-reviewed books
 The homepage uses Django queries to pull data dynamically, showing the 6 most recent books and 3 most-reviewed books. These are displayed using Bootstrap card decks for a visually engaging layout. This feature has been used on various other pages, where I would like to display other books for users to see. These will change when more books are being uploaded to the database.
 
-          def homepage(request):
-    recent_books = Book.objects.order_by('-id')[:6]  # Get the 6 most recent books
-    most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
-    return render(request, 'books/homepage.html', {
-        'recent_books': recent_books,
-        'most_reviewed_books': most_reviewed_books,
-    })
+        def homepage(request):
+            recent_books = Book.objects.order_by('-id')[:6]  
+            most_reviewed_books = Book.objects.annotate(review_count=Count('reviews')).order_by('-review_count')[:3]  # Get the 3 most reviewed books
+    
+            return render(request, 'books/homepage.html', {
+            'recent_books': recent_books,
+            'most_reviewed_books': most_reviewed_books,
+        })
 
 ## Logged in vs Logged Out Views - LoginRequiredMixin
 The LoginRequiredMixin is used throughout the class base views within books/views.py to restrict access to certain views, like the book list, ensuring only logged-in users can view them, while other views, like the book detail view, are accessible to everyone but display additional content or functionality for logged-in users.
@@ -370,7 +375,7 @@ To ensure my project was functioning correctly and free of errors, I conducted t
 ## Testing Accessability
 To test user accessability i used a web platform called Wave. It came out with an alert for my footer not having the correct contrast, making it hard to read. I then changed the font colour to improve accessablity.
 
-![Wave Test](static/assets/images/readMe/wavetesting1.png)
+![Wave Test](static/assets/images/readMe/wavetesting2.png)
 
 ## Testing During Deployment
 - I utilised the Heroku command: 'heroku logs --tail --app your-app-name' to monitor logs for errors during deployment.This helped me identify and fix issues with my Django code, database migrations, or server setup.
