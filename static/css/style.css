@@ -90,9 +90,9 @@ header ul li a:hover,
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .nav {
+    .nav li {
         justify-content: center; /* Center nav links on small screens */
-        font-size: medium; /* Reduce font size for smaller screens */
+        font-size: large; /* Reduce font size for smaller screens */
     }
 }
 

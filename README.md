@@ -79,15 +79,17 @@ Examples of my User Stories:
 - Moving Books Between Categories (should-have)
 - Adding Books to the App - (must-have)
 
-Viewing Book Lists (must-have)
+## Viewing Book Lists (must-have)
 As an avid reader, I want to view my lists by category (Want to Read, Currently Reading, Read) so that I can quickly see my progress and prioritise my next book.
 
-Acceptance Criteria:
+## Acceptance Criteria:
 
 - Users can view their books organised by category on a dashboard or home screen.
 - Categories display an accurate count of books within them.
 
 This approach helped me keep my workflow organised and focus on delivering the most important features first.
+
+![User Stories Agile Framework](static/assets/images/readMe/userstories.png)
 
 See examples of my 'Project Plan' on Github.
 
@@ -102,15 +104,122 @@ See examples of my 'Project Plan' on Github.
 
 # Features
 
-## Create an account with a username and password
-Users can register on the platform using Django's built-in authentication system. The form is styled with Bootstrap classes for a clean, user-friendly design.
+## Bootstrap Styling
+I used Bootstrap to style my project because it made it easy to create a clean, organised, and responsive design. I used its grid system to align content into rows and columns, styled buttons, forms, and navigation bars, and applied utility classes for spacing and alignment. Bootstrap’s pre-built components and responsive design features helped ensure the website looks good and works well on all screen sizes.
 
+For example:
+
+I used Bootstrap’s grid layout with its 12-column system to create a clean and organised design. By dividing the page into rows and columns, I was able to align content neatly and ensure it looks good on all screen sizes.
+
+      <div class="container">
+    <div class="row">
+        <!-- Book Details Section -->
+        <div class="col-12 col-md-6 text-left">
+            <h1>{{ object.title }}</h1>
+            <p><strong>Author:</strong> {{ object.author }}</p>
+            <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
+            <p><strong>Status:</strong> {{ object.status }}</p>
+            <div class="mt-3">
+                {% if user.is_authenticated and book.added_by == user %}
+                <a class="btn btnMain" href="{% url 'book_edit' book.pk %}">Edit</a>
+                <a class="btn btnMain" href="{% url 'book_delete' book.pk %}">Delete</a>
+                {% endif %}
+                <br>
+            </div>
+        </div>
+
+Using the 12-col system, having col-12 ensures it displays in one column (full-width) on a mobile/smaller screen, and col-md-6, displays half the screen on larger screen sizes. This allows easy to apply responsive styling to be used.
+
+![Bootstrap Grid](static/assets/images/readMe/gridpagelayout.png)
+
+Another example using Bootstrap utility classes like mt-3, p-4, or text-center for spacing, alignment, and text styling.
+
+        <div class="row text-center mt-4">
+    <!-- Wish List Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h2>NovelNest</h2>
+            <h4>Welcome to the nest where your literary adventures take flight.</h3>
+                <br>
+            <p>Novelnest is your personal space to track, explore, and celebrate your reading journey. 
+                Whether you’re diving into a classic or discovering the next bestseller, Novelnest helps you catalogue books you’ve read,
+                create a wishlist of titles to explore, and share reviews with a vibrant community of book lovers. With intuitive tools
+                to organise your library and personalised recommendations, we make it easy to nurture your love for reading—all in one place. 
+            </p>            
+        </div>
+    </div>
+
+## File Storage and Database
+For NovelNest, I’ve set up static file storage and database management to ensure the app runs efficiently.
+
+- Static File Storage: I used Whitenoise to handle and serve all the static files, like CSS, JavaScript, and images, directly from the app. This means I don’t need an external service for static file hosting. 
+
+- Database: For the database, I integrated PostgreSQL. It’s hosted on Heroku, and I’ve configured it using the dj-database-url package. This connects my Django app to the database automatically using Heroku’s DATABASE_URL environment variable.
+
+## CRUD Functionality
+Logged in users have full CRUD (Create, Read, Update, Delete) functionality for managing their books and reviews. For example:
+
+- Create: Users can add new books or leave reviews on books.
+- Read: Users can view details of books, including reviews and genres.
+- Update: Users can edit books they’ve added or update their reading category.
+- Delete: Users can remove books they’ve added.
+
+Only admin users have enhanced privileges, such as managing all user submissions and accessing the admin panel.
+
+## Forms.py
+forms.py manages user input for my app, by providing structured forms for specific tasks. Within my project, the ReviewForm is linked directly to the Review model, allowing users to submit and save reviews with customised styling for better usability. The SearchForm, meanwhile, provides a clean and intuitive interface for users to search for books, with validation and Bootstrap styling for a polished user experience.
+
+        from django import forms
+        from .models import Review
+
+        class ReviewForm(forms.ModelForm):
+        class Meta:
+            model = Review
+            fields = ["content"]
+            widgets = {
+                    "content": forms.Textarea(
+                        attrs={
+                            "rows": 2,
+                            "style": "width: 100%;", 
+                            "placeholder": "Write your review here...",
+                        }
+                                ),
+                }
+
+        class SearchForm(forms.Form):
+            query = forms.CharField(
+                max_length=100,
+                required=False,
+                widget=forms.TextInput(attrs={"placeholder": "Search for books...", "class": "form-control"}),
+            )
+
+## Models.py
+In my models.py, the Book model represents a book's details, allowing users to add books with specific categories. It includes fields like title and author, as well as status and genre fields, which use predefined choice.. The added_by field links each book to the user who added it, and methods like __str__ and get_absolute_url provide user-friendly representations and URL paths for accessing individual book details.
+
+## Create an account with a username and password
+The signup feature uses Django's UserCreationForm to handle user registration. When a user submits the form, the server validates the input, and saves the user data to the database. When a user successfully signs up, users are redirected to the book list page. The form and view are styled with Bootstrap for a clean user experience.
 ![Create an Account](static/assets/images/readMe/createaccountnovelnest.png)
 
 ## Login and Logout
-Users can log in and log out securely using Django’s built-in authentication system. The dynamic login/logout button in the Bootstrap navbar updates based on the user’s session state. 
+The login feature uses Django’s authentication to securely validate users. The form is styled with Bootstrap, it includes CSRF protection, and redirects users when they've logged in. If a user does not have login information, a signup link is available to create an account. The dynamic login/logout button in the Bootstrap navbar updates based on the user’s session state. 
 
-{% if user.is_authenticated %}
+        <div class="accountContainer">
+  <div class="row justify-content-center">
+      <div class="col-md-4">
+        <h1>Login</h1>
+        <form method="post" class="p-4 shadow rounded bg-light">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btnMain">Login</button>
+        </form>
+
+          <div class="text-center mt-3">
+            <p>Don't have an account? <a style= color:black href="{% url 'signup' %}">Sign up here</a></p>
+              
+          </div>
+      </div>
+  </div>
+</div>
 
 ## Change Password
 The password change feature uses Django’s built-in PasswordChangeView, which allows users to securely update their passwords. I’ve customised this functionality by creating a CustomPasswordChangeView that uses a personalised form template (password_change_form.html) and a confirmation page (password_change_done.html). Both templates extend base.html to match the styling and layout of the rest of the website, providing a consistent and user-friendly experience for anyone updating their password.
@@ -120,9 +229,7 @@ The password change feature uses Django’s built-in PasswordChangeView, which a
               success_url = reverse_lazy('password-change/done')  # Matches the name in your URLs
 
 ## Upload a book with details (author, title, and genre)
-Users can submit book details via a Django form, including author, genre and title, which validates input and saves the data to the database. Bootstrap is used for form styling to ensure responsive layout.
-
-
+Users can add books via a Django form, including title, author, genre, and status. The Book model stores this data, categorises books, and links them to the user who added them. Bootstrap is used for form styling to ensure responsive layout.
 
      class BookCreateView(LoginRequiredMixin, CreateView):
         model = Book
@@ -142,16 +249,27 @@ Users can submit book details via a Django form, including author, genre and tit
 ![Upload a Book](static/assets/images/readMe/addabooknovelnest.png)
 
 ## Select a category for the book (Wish List, Currently Reading, Completed)
-A dropdown menu, created with HTML and styled using Bootstrap, lets users assign books to categories. The selection updates dynamically in the database.
+A dropdown menu, lets users assign books to categories. The selection updates dynamically in the database by using the Book model.
+
+Book model:
+        class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    status_choices = [
+        ("Wishlist", "Wish List"),
+        ("Reading", "Reading"),
+        ("Completed", "Completed"),
+    ]
+    status = models.CharField(max_length=10, choices=status_choices, default="to_read")
 
 ![Select a Category](static/assets/images/readMe/selectacategorynorvelnest.png)
 
 ## Edit, amend or delete uploaded books, and move them between categories
-Users can edit book details using Django's update view, with form fields pre-populated from the database. When deleting a book from the users lists, an alert page is displayed to confirm deletion. The webpage redirects to the book detail page once saved, or deleted.
+Users can edit book details using Django's update view, with form fields pre-populated from the database. When deleting a book from the users lists, an alert page is displayed to confirm deletion. The webpage redirects to the book detail page if saved, or if deleted it goes to the book list.
 
-The edit and delete buttons only display if the logged in user has uploaded the book they are viewing.
+The edit and delete buttons only display if the logged in user has uploaded the book they are viewing. This is done by the conditional statement below:
 
-      {% if user.is_authenticated and book.added_by == user %}
+    {% if user.is_authenticated and book.added_by == user %}
 
 ![Edit and Delete](static/assets/images/readMe/editnovelnest.png)
 
@@ -241,102 +359,6 @@ Logged Out Content:
          model = Book
          template_name = "books/book_detail.html"
 
-## Bootstrap Styling
-I used Bootstrap to style my project because it made it easy to create a clean, organised, and responsive design. I used its grid system to align content into rows and columns, styled buttons, forms, and navigation bars, and applied utility classes for spacing and alignment. Bootstrap’s pre-built components and responsive design features helped ensure the website looks good and works well on all screen sizes.
-
-For example:
-
-I used Bootstrap’s grid layout with its 12-column system to create a clean and organised design. By dividing the page into rows and columns, I was able to align content neatly and ensure it looks good on all screen sizes.
-
-      <div class="bookDetailContainer">
-    <div class="row">
-        <!-- Book Details Section -->
-        <div class="col-md-6 text-left book-detail-section">
-            <h1>{{ object.title }}</h1>
-            <p><strong>Author:</strong> {{ object.author }}</p>
-            <p><strong>Genre:</strong> {{ object.get_genre_display }}</p>
-            <p><strong>Status:</strong> {{ object.status }}</p>
-            <div class="mt-3">
-                {% if user.is_authenticated and book.added_by == user %}
-                <a class="btn btnMain" href="{% url 'book_edit' book.pk %}">Edit</a>
-                <a class="btn btnMain" href="{% url 'book_delete' book.pk %}">Delete</a>
-                {% endif %}
-            </div>
-        </div>
-
-        <!-- Image Section -->
-        <div class="col-md-6 text-center book-image-section">
-            <img src="{% static 'assets/images/bookDetails.png' %}" alt="{{ object.title }}" class="img-fluid">
-        </div>
-    </div>
-
-![Bootstrap Grid](static/assets/images/readMe/gridpagelayout.png)
-
-Another example using Bootstrap utility classes like mt-3, p-4, or text-center for spacing, alignment, and text styling.
-
-        <div class="row text-center mt-4">
-    <!-- Wish List Section -->
-    <div class="col-md-6 d-flex align-items-center justify-content-center">
-        <div class="text-center">
-            <h2>NovelNest</h2>
-            <h4>Welcome to the nest where your literary adventures take flight.</h3>
-                <br>
-            <p>Novelnest is your personal space to track, explore, and celebrate your reading journey. 
-                Whether you’re diving into a classic or discovering the next bestseller, Novelnest helps you catalogue books you’ve read,
-                create a wishlist of titles to explore, and share reviews with a vibrant community of book lovers. With intuitive tools
-                to organise your library and personalised recommendations, we make it easy to nurture your love for reading—all in one place. 
-            </p>            
-        </div>
-    </div>
-
-## File Storage and Database
-For NovelNest, I’ve set up static file storage and database management to ensure the app runs efficiently.
-
-- Static File Storage: I used Whitenoise to handle and serve all the static files, like CSS, JavaScript, and images, directly from the app. This means I don’t need an external service for static file hosting. 
-
-- Database: For the database, I integrated PostgreSQL. It’s hosted on Heroku, and I’ve configured it using the dj-database-url package. This connects my Django app to the database automatically using Heroku’s DATABASE_URL environment variable.
-
-## CRUD Functionality
-Authenticated users in NovelNest have full CRUD (Create, Read, Update, Delete) functionality for managing their books and reviews. For example:
-
-Create: Users can add new books or leave reviews on books.
-Read: Users can view details of books, including reviews and genres.
-Update: Users can edit books they’ve added or update their reading category.
-Delete: Users can remove books they’ve added.
-Only admin users have enhanced privileges, such as managing all user submissions and accessing the admin panel.
-
-
-## Forms.py
-forms.py manages user input for NovelNest, by providing structured forms for specific tasks. Within my project, the ReviewForm is linked directly to the Review model, allowing users to submit and save reviews with customised styling for better usability. The SearchForm, meanwhile, provides a clean and intuitive interface for users to search for books, with validation and Bootstrap styling for a polished user experience.
-
-        from django import forms
-        from .models import Review
-
-
-        class ReviewForm(forms.ModelForm):
-        class Meta:
-            model = Review
-            fields = ["content"]
-            widgets = {
-                    "content": forms.Textarea(
-                        attrs={
-                            "rows": 2,
-                            "style": "width: 100%;", 
-                            "placeholder": "Write your review here...",
-                        }
-                                ),
-                }
-
-        class SearchForm(forms.Form):
-            query = forms.CharField(
-                max_length=100,
-                required=False,
-                widget=forms.TextInput(attrs={"placeholder": "Search for books...", "class": "form-control"}),
-            )
-## Models.py
-In my models.py, the Book model represents a book's details, allowing users to add books with specific categories. It includes fields like title and author, as well as status and genre fields, which use predefined choices to ensure consistency when categorising books. The added_by field links each book to the user who added it, and methods like __str__ and get_absolute_url provide user-friendly representations and URL paths for accessing individual book details.
-
-
 # Testing
 To ensure my project was functioning correctly and free of errors, I conducted thorough testing across different aspects of the application. This included validating my HTML and CSS, checking server logs during deployment, and performing manual user testing.
 
@@ -347,8 +369,13 @@ To ensure my project was functioning correctly and free of errors, I conducted t
 ![HTML Test](static/assets/images/readMe/htmltesting.png)
 ![CSS Test](static/assets/images/readMe/csstesting.png)
 
+## Testing Accessability
+To test user accessability i used a web platform called Wave. It came out with an alert for my footer not having the correct contrast, making it hard to read. I then changed the font colour to improve accessablity.
+
+![Wave Test](static/assets/images/readMe/wavetesting1.png)
+
 ## Testing During Deployment
-- I utilised the Heroku command: heroku logs --tail --app your-app-name to monitor logs for errors during deployment.This helped me identify and fix issues with my Django code, database migrations, or server setup.
+- I utilised the Heroku command: 'heroku logs --tail --app your-app-name' to monitor logs for errors during deployment.This helped me identify and fix issues with my Django code, database migrations, or server setup.
 
 ## Manual User Testing
 I interacted with the app as a user to test functionality and workflows:
@@ -370,8 +397,11 @@ Devices checked:
 
 See examples of visuals of my device testing.
 
+iPhone 15 Pro
 ![iPhone 15 Pro](static/assets/images/readMe/iphone15.png)
+Android Galaxy Mobile
 ![Android Galaxy](static/assets/images/readMe/androidgalaxy.png)
+iPad 11
 ![iPad11](static/assets/images/readMe/ipad111.png)
 
 ## Lighthouse Testing
@@ -460,10 +490,10 @@ I used the following resources to complete this project.
 - W3Schools / styling and html/css support / testing
 - Bootstrap / styling / grid layout / forms
 - Code Institute's "I think therefore I blog" Walkthrough project
-- Django 5 by Example Book - Huge help with building the project django code, especiall with authorisation settings, including account set up, and  password reset. 
+- Django 5 by Example Book - Huge help with building the project django code, especiall with authorisation settings, including account set up, and password reset. 
 - Squoosh - compress images to webp
 - Images sourced royalty free from Canva.com
-- Name, made up and gained inspiration from other websites including GoodReads.
+- Name of the app is made up, by gaineing inspiration from other websites including GoodReads.
 
 # Future Features
 In the future I would like to add the following features to help improve UX:
