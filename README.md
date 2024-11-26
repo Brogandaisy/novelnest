@@ -204,22 +204,20 @@ The signup feature uses Django's UserCreationForm to handle user registration. W
 The login feature uses Django’s authentication to securely validate users. The form is styled with Bootstrap, it includes CSRF protection, and redirects users when they've logged in. If a user does not have login information, a signup link is available to create an account. The dynamic login/logout button in the Bootstrap navbar updates based on the user’s session state. 
 
         <div class="accountContainer">
-  <div class="row justify-content-center">
-      <div class="col-md-4">
-        <h1>Login</h1>
-        <form method="post" class="p-4 shadow rounded bg-light">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btnMain">Login</button>
-        </form>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                <h1>Login</h1>
+            <form method="post" class="p-4 shadow rounded bg-light">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btnMain">Login</button>
+            </form>
 
           <div class="text-center mt-3">
-            <p>Don't have an account? <a style= color:black href="{% url 'signup' %}">Sign up here</a></p>
+                <p>Don't have an account? <a style= color:black href="{% url 'signup' %}">Sign up here</a></p>
               
           </div>
-      </div>
-  </div>
-</div>
+        </div>
 
 ## Change Password
 The password change feature uses Django’s built-in PasswordChangeView, which allows users to securely update their passwords. I’ve customised this functionality by creating a CustomPasswordChangeView that uses a personalised form template (password_change_form.html) and a confirmation page (password_change_done.html). Both templates extend base.html to match the styling and layout of the rest of the website, providing a consistent and user-friendly experience for anyone updating their password.
